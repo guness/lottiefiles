@@ -1,0 +1,66 @@
+<resources>
+    <string name="app_name">LottieFiles</string>
+
+    <string name="nav_home">Home</string>
+    <string name="nav_category">Categories</string>
+    <string name="nav_favorite">Favorites</string>
+    <string name="nav_profile">Profile</string>
+
+    <string name="home_daily_practice">Daily affirmation practice</string>
+    <string name="home_quick_start">Quick start with default settings</string>
+    <string name="home_quote_of_day">Quote of the day</string>
+    <string name="home_articles">Articles</string>
+    <string name="home_subscribe_premium">Subscribe to premium</string>
+    <array name="home_premium_checks">
+        <item>Practice your own affirmations</item>
+        <item>Practice affirmations with calm sound</item>
+        <item>Practice more than 500+ affirmations</item>
+        <item>Expand time in the practice mode</item>
+    </array>
+
+    <string name="favorite_add_own_affirmation">Add own affirmations</string>
+
+    <string name="profile_photo">Profile photo</string>
+    <string name="profile_add_photo">Add profile photo</string>
+    <string name="profile_name">Name</string>
+    <string name="profile_account_type">Account type</string>
+    <string name="profile_daily_remainder">Daily remainder</string>
+    <string name="profile_quick_start">Quick start settings</string>
+    <string name="profile_appearance">Appearance</string>
+    <string name="profile_mood_tracker">Mood Tracker</string>
+    <string name="profile_no_mood">You didn\'t track any mood yet.</string>
+    <string name="profile_achievements">Achievements</string>
+    <string name="profile_no_achievements">You didn\'t unlock any achievements yet.</string>
+
+    <string name="subscribe_title">Control your subconscious mind</string>
+    <string name="subscribe_restore">Restore Purchases</string>
+    <string name="subscribe_privacy">Privacy Policy</string>
+    <string name="subscribe_tos">Terms of Service</string>
+    <string name="subscribe_explained">Payment is made via your Google Play Account and will renew automatically at the same price within 24 hours of expiry, a month after purchase. You can manage and cancel your subscription via your Google Play Account settings.</string>
+    <array name="subscribe_premium_checks">
+        <item>Practice affirmations with nature sound</item>
+        <item>Practice more than 600+ affirmations within 9 categories</item>
+        <item>Track and see your mood changes on a beautifully designed app.</item>
+        <item>Add your own affirmations and practice your own affirmations</item>
+    </array>
+
+    <string name="start">Start</string>
+    <string name="share">Share</string>
+    <string name="subscribe">Subscribe</string>
+    <string name="preferences">Preferences</string>
+
+    <string name="unexpected_error">Unexpected Error!</string>
+
+    <string name="cat_general">General</string>
+    <string name="cat_acceptance">Self acceptance</string>
+    <string name="cat_wealth">Wealth</string>
+    <string name="cat_love">Love</string>
+    <string name="cat_stress">Stress and anxiety</string>
+    <string name="cat_motivation">Motivation</string>
+    <string name="cat_health">Health</string>
+    <string name="cat_success">Success</string>
+    <string name="cat_communication">Communication</string>
+    <string name="profile_free">Free</string>
+    <string name="profile_system">System</string>
+
+</resources>

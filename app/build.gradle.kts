@@ -125,6 +125,7 @@ dependencies {
 
     // Json lib
     implementation(KotlinX.serialization.json)
+    implementation(JakeWharton.retrofit2.converter.kotlinxSerialization)
 
     // Tools
     implementation(JakeWharton.timber)
@@ -133,6 +134,8 @@ dependencies {
     implementation("org.jsoup:jsoup:_")
     implementation(COIL.compose)
     implementation(Square.retrofit2)
+    implementation(Square.okHttp3.okHttp)
+    implementation(Square.okHttp3.loggingInterceptor)
 
     // Utilities
     coreLibraryDesugaring(Android.tools.desugarJdkLibs)

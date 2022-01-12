@@ -10,7 +10,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.guness.lottie.R
-import com.guness.lottie.data.db.ArticleDao
+import com.guness.lottie.data.db.AnimationDao
 import com.guness.lottie.data.dto.*
 import com.guness.lottie.data.useCases.AnimatorsUseCase
 import com.guness.lottie.data.webservice.ApiWebservice
@@ -57,25 +57,6 @@ fun CategoryScreen(onSubscribe: OnClick, viewModel: CategoryViewModel = hiltView
 @Preview(showBackground = true)
 @Composable
 private fun CategoryPreview() = LottieTheme {
-    val webservice = object : ApiWebservice {
-        override suspend fun getFeaturedAnimations(): ApiResponse<Animation> = ApiResponse()
 
-        override suspend fun getPopularAnimations(): ApiResponse<Animation> = ApiResponse()
-
-        override suspend fun getRecentAnimations(): ApiResponse<Animation> = ApiResponse()
-
-        override suspend fun getAnimators(): ApiResponse<Animator> = ApiResponse()
-
-        override suspend fun getBlogs(): ApiResponse<Blog> = ApiResponse()
-    }
-    val dao = object : ArticleDao {
-        override suspend fun add(articles: Article) = Unit
-
-        override fun observeAll(): Flow<List<Article>> = emptyFlow()
-
-        override suspend fun clear() = Unit
-
-    }
-    val animators = AnimatorsUseCase(webservice, dao)
-    CategoryScreen({}, CategoryViewModel(animators))
+    CategoryScreen({}, CategoryViewModel())
 }

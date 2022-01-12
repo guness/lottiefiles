@@ -15,16 +15,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.guness.lottie.R
-import com.guness.lottie.data.db.ArticleDao
-import com.guness.lottie.data.dto.Article
 import com.guness.lottie.data.repo.ArticleRepository
 import com.guness.lottie.ui.theme.*
 import com.guness.lottie.utils.OnClick
 import com.guness.lottie.utils.WebMetadataRetriever
 import com.guness.lottie.utils.extensions.openUriSafe
 import com.guness.lottie.utils.widget.TopBackground
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flowOf
 
 @Composable
 fun HomeScreen(onPractice: OnClick, onSubscribe: OnClick, viewModel: HomeViewModel = hiltViewModel()) {
@@ -101,10 +97,5 @@ fun HomeScreen(onPractice: OnClick, onSubscribe: OnClick, viewModel: HomeViewMod
 @Composable
 private fun HomePreview() = LottieTheme {
     val context = LocalContext.current
-    val articleDao = object : ArticleDao {
-        override suspend fun add(articles: Article) = Unit
-        override fun observeAll(): Flow<List<Article>> = flowOf()
-        override suspend fun clear() = Unit
-    }
-    HomeScreen({}, {}, HomeViewModel(ArticleRepository(context, articleDao), WebMetadataRetriever(context)))
+    HomeScreen({}, {}, HomeViewModel(ArticleRepository(context), WebMetadataRetriever(context)))
 }

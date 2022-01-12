@@ -4,7 +4,9 @@ import android.content.Context
 import androidx.room.Room
 import androidx.room.migration.Migration
 import com.guness.lottie.BuildConfig
-import com.guness.lottie.data.db.ArticleDao
+import com.guness.lottie.data.db.AnimationDao
+import com.guness.lottie.data.db.AnimatorDao
+import com.guness.lottie.data.db.BlogDao
 import com.guness.lottie.data.db.LottieDatabase
 import dagger.Module
 import dagger.Provides
@@ -27,8 +29,18 @@ object DatabaseModule {
     }
 
     @Provides
-    fun providesArticleDao(db: LottieDatabase): ArticleDao {
-        return db.articleDao()
+    fun providesAnimationDao(db: LottieDatabase): AnimationDao {
+        return db.animationDao()
+    }
+
+    @Provides
+    fun providesAnimatorDao(db: LottieDatabase): AnimatorDao {
+        return db.animatorDao()
+    }
+
+    @Provides
+    fun providesBlogDao(db: LottieDatabase): BlogDao {
+        return db.blogDao()
     }
 
     private val migrations by lazy {

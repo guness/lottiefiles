@@ -7,6 +7,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonBuilder
 import kotlinx.serialization.modules.SerializersModule
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
@@ -44,10 +45,12 @@ object ApiModule {
 
     @Provides
     fun providesJson(): Json {
-        return Json {
-            ignoreUnknownKeys = true
-            serializersModule = SerializersModule { }
-            coerceInputValues = true
-        }
+        return Json(builderAction = jsonConfig)
+    }
+
+    val jsonConfig: JsonBuilder.() -> Unit = {
+        ignoreUnknownKeys = true
+        serializersModule = SerializersModule { }
+        coerceInputValues = true
     }
 }

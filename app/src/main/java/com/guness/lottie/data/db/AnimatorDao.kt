@@ -1,9 +1,6 @@
 package com.guness.lottie.data.db
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.guness.lottie.data.db.LottieDatabase.Companion.TABLE_ANIMATOR
 import com.guness.lottie.data.dto.Animator
 import kotlinx.coroutines.flow.Flow
@@ -22,4 +19,10 @@ interface AnimatorDao {
 
     @Query("DELETE FROM $TABLE_ANIMATOR")
     suspend fun clear()
+
+    @Transaction
+    suspend fun setAll(list: List<Animator>) {
+        clear()
+        addAll(list)
+    }
 }

@@ -2,14 +2,12 @@ package com.guness.lottie.ui.activities.main.home
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
@@ -17,34 +15,35 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
-import com.guness.lottie.R
-import com.guness.lottie.data.dto.Article
-import com.guness.lottie.ui.theme.*
-import com.guness.lottie.utils.OnClick
+import com.guness.lottie.data.dto.Animator
+import com.guness.lottie.ui.theme.Footnote1
+import com.guness.lottie.ui.theme.LottieTheme
+import com.guness.lottie.ui.theme.Padding
+import com.guness.lottie.ui.theme.Radius
 
 private val WIDTH = 129.dp
 
 @Composable
-fun ArticlesRow(articles: List<Article>, modifier: Modifier = Modifier, loading: Boolean = false, onArticleClick: (Article) -> Unit = {}) {
+fun AnimatorsRow(animators: List<Animator>, modifier: Modifier = Modifier) {
     LazyRow(
         modifier = modifier,
         contentPadding = PaddingValues(horizontal = Padding.s),
         horizontalArrangement = Arrangement.spacedBy(Padding.s)
     ) {
-        if (loading && articles.isEmpty()) {
+        if (animators.isEmpty()) {
             items(5) {
-                ArticlePlaceholder()
+                AnimatorPlaceholder()
             }
         } else {
-            items(articles) {
-                ArticleView(it) { onArticleClick(it) }
+            items(animators) {
+                AnimatorView(it)
             }
         }
     }
 }
 
 @Composable
-fun ArticlePlaceholder() {
+fun AnimatorPlaceholder() {
     @Composable
     fun Line(width: Dp = WIDTH) = Box(
         modifier = Modifier
@@ -56,15 +55,11 @@ fun ArticlePlaceholder() {
     Column {
         Box(
             modifier = Modifier
-                .clip(RoundedCornerShape(Radius.s))
+                .clip(RoundedCornerShape(Radius.l))
                 .background(MaterialTheme.colors.onBackground)
                 .size(WIDTH)
         )
         Spacer(modifier = Modifier.height(14.dp))
-        Line()
-        Spacer(modifier = Modifier.height(8.dp))
-        Line()
-        Spacer(modifier = Modifier.height(8.dp))
         Line()
         Spacer(modifier = Modifier.height(8.dp))
         Line(width = 90.dp)
@@ -72,32 +67,25 @@ fun ArticlePlaceholder() {
 }
 
 @Composable
-fun ArticleView(article: Article, onArticleClick: OnClick = {}) {
+fun AnimatorView(animator: Animator) {
     Column(
-        modifier = Modifier
-            .width(WIDTH)
-            .clickable(onClick = onArticleClick)
+        modifier = Modifier.width(WIDTH)
     ) {
         Box(
             modifier = Modifier
-                .clip(RoundedCornerShape(Radius.s))
+                .clip(RoundedCornerShape(Radius.l))
                 .background(MaterialTheme.colors.onBackground)
                 .size(WIDTH)
         ) {
             Image(
-                painter = rememberImagePainter(article.image),
+                painter = rememberImagePainter(animator.avatarUrl),
                 contentDescription = null,
                 modifier = Modifier.size(WIDTH),
                 contentScale = ContentScale.Crop
             )
-            MiniButton(
-                onClick = onArticleClick,
-                modifier = Modifier.align(Alignment.TopEnd),
-                id = R.drawable.ic_link
-            )
         }
-        Box(modifier = Modifier.padding(top = Padding.s, end = Padding.m)) {
-            Footnote1(text = article.text ?: "-", maxLines = 3)
+        Box(modifier = Modifier.padding(top = Padding.xs, end = Padding.m)) {
+            Footnote1(text = animator.name, maxLines = 2)
         }
     }
 }
@@ -105,23 +93,23 @@ fun ArticleView(article: Article, onArticleClick: OnClick = {}) {
 @Preview
 @Composable
 private fun PlaceholderPreview() = LottieTheme {
-    ArticlePlaceholder()
+    AnimatorPlaceholder()
 }
 
 @Preview(showBackground = true)
 @Composable
-private fun ArticlePreview() = LottieTheme {
-    ArticleView(Article(text = "text1", image = "image1", url = "url1"))
+private fun AnimatorPreview() = LottieTheme {
+    AnimatorView(Animator(name = "Name One", avatarUrl = "image1"))
 }
 
 @Preview(showBackground = true)
 @Composable
 private fun RowPreview() = LottieTheme {
-    ArticlesRow(
+    AnimatorsRow(
         listOf(
-            Article(text = "text1", image = "image1", url = "url1"),
-            Article(text = "text2", image = "image2", url = "url2"),
-            Article(text = "text3", image = "image3", url = "url3")
+            Animator(name = "Name One", avatarUrl = "image1"),
+            Animator(name = "Name Two", avatarUrl = "image2"),
+            Animator(name = "Name Three", avatarUrl = "image3")
         )
     )
 }

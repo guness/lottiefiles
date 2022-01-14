@@ -10,12 +10,12 @@ import javax.inject.Singleton
  * Created by guness on 13.01.2022 12:26
  */
 @Singleton
-class AnimatorRepository @Inject constructor(val webservice: ApiWebservice, val dao: AnimatorDao) {
+class AnimatorRepository @Inject constructor(private val webservice: ApiWebservice, private val dao: AnimatorDao) {
 
     val animators = dao.observeAll()
 
     suspend fun updateAnimators() {
         val animators = webservice.getAnimators().data?.values?.first()?.results ?: throw UnexpectedApiError()
-        dao.addAll(animators)
+        dao.setAll(animators)
     }
 }

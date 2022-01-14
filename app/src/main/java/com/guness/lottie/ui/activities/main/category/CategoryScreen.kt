@@ -10,10 +10,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.guness.lottie.R
-import com.guness.lottie.data.db.AnimationDao
-import com.guness.lottie.data.dto.*
-import com.guness.lottie.data.useCases.AnimatorsUseCase
-import com.guness.lottie.data.webservice.ApiWebservice
 import com.guness.lottie.ui.theme.BottomBarHeight
 import com.guness.lottie.ui.theme.LargeTitle
 import com.guness.lottie.ui.theme.LottieTheme
@@ -21,8 +17,6 @@ import com.guness.lottie.ui.theme.Padding
 import com.guness.lottie.utils.OnClick
 import com.guness.lottie.utils.compose.items
 import com.guness.lottie.utils.widget.TopBackground
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.emptyFlow
 
 @Composable
 fun CategoryScreen(onSubscribe: OnClick, viewModel: CategoryViewModel = hiltViewModel()) {

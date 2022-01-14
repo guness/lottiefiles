@@ -136,6 +136,7 @@ dependencies {
     implementation(Square.retrofit2)
     implementation(Square.okHttp3.okHttp)
     implementation(Square.okHttp3.loggingInterceptor)
+    implementation("com.airbnb.android:lottie-compose:_")
 
     // Utilities
     coreLibraryDesugaring(Android.tools.desugarJdkLibs)

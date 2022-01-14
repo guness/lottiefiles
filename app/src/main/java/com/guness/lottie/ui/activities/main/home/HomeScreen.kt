@@ -69,8 +69,7 @@ private fun ScreenContent(
                 HeroCard(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(start = Padding.s, top = Padding.m, end = Padding.s),
-                    animation = featured.getOrNull(0)
+                        .padding(start = Padding.s, top = Padding.m, end = Padding.s)
                 )
             }
             item {
@@ -82,12 +81,9 @@ private fun ScreenContent(
                 )
             }
             item {
-                //TODO: quote and author
-                QuoteCard(
-                    quote = "It does not matter how slowly you go as long as you do not stop.",
-                    author = "Confucius",
-                    modifier = cardModifier,
-                    onShareClick = { /*TODO*/ }
+                FeaturedRow(
+                    animations = featured,
+                    modifier = Modifier.padding(top = Padding.s)
                 )
             }
             item {

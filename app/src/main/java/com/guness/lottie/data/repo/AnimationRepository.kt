@@ -6,6 +6,7 @@ import com.guness.lottie.data.dto.PopularAnimation
 import com.guness.lottie.data.dto.RecentAnimation
 import com.guness.lottie.data.webservice.ApiWebservice
 import com.guness.lottie.utils.UnexpectedApiError
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -13,14 +14,15 @@ import javax.inject.Singleton
  * Created by guness on 13.01.2022 12:26
  */
 @Singleton
-class AnimationRepository @Inject constructor(val webservice: ApiWebservice, val dao: AnimationDao) {
+class AnimationRepository @Inject constructor(private val webservice: ApiWebservice, private val dao: AnimationDao) {
 
     val featured = dao.observeAllFeatured()
     val recent = dao.observeAllRecent()
     val popular = dao.observeAllPopular()
 
     suspend fun updateFeatured() {
-        val animations = webservice.getFeaturedAnimations().data?.values?.first()?.results ?: throw UnexpectedApiError()
+        val response = webservice.getFeaturedAnimations()
+        val animations = response.data?.values?.first()?.results ?: throw UnexpectedApiError()
         dao.addAllFeatured(animations.map(::FeaturedAnimation))
     }
 

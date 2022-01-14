@@ -14,6 +14,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.guness.lottie.R
+import com.guness.lottie.data.dto.Animation
 import com.guness.lottie.data.dto.Animator
 import com.guness.lottie.data.dto.Blog
 import com.guness.lottie.ui.theme.*
@@ -28,16 +29,19 @@ fun HomeScreen(onPractice: OnClick, onSubscribe: OnClick, viewModel: HomeViewMod
     LaunchedEffect(key1 = "data") {
         viewModel.loadData()
     }
-    ScreenContent(onPractice, onSubscribe, viewModel.animators, viewModel.blogs)
+    ScreenContent(onPractice, onSubscribe, viewModel.featured, viewModel.animators, viewModel.blogs)
 }
 
 @Composable
 private fun ScreenContent(
-    onPractice: OnClick, onSubscribe: OnClick,
+    onPractice: OnClick,
+    onSubscribe: OnClick,
+    _featured: Flow<List<Animation>>,
     _animators: Flow<List<Animator>>,
     _blogs: Flow<List<Blog>>,
 ) {
 
+    val featured by _featured.collectAsState(initial = emptyList())
     val animators by _animators.collectAsState(initial = emptyList())
     val blogs by _blogs.collectAsState(initial = emptyList())
 
@@ -62,10 +66,11 @@ private fun ScreenContent(
                 )
             }
             item {
-                DailyCard(
-                    modifier = cardModifier,
-                    onStartClick = onPractice,
-                    onSettingsClick = { /*TODO*/ }
+                HeroCard(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(start = Padding.s, top = Padding.m, end = Padding.s),
+                    animation = featured.getOrNull(0)
                 )
             }
             item {
@@ -121,5 +126,5 @@ private fun ScreenContent(
 @Preview(showBackground = true, heightDp = 1600)
 @Composable
 private fun HomePreview() = LottieTheme {
-    ScreenContent({}, {}, emptyFlow(), emptyFlow())
+    ScreenContent({}, {}, emptyFlow(), emptyFlow(), emptyFlow())
 }

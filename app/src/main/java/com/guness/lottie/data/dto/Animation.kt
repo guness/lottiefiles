@@ -19,8 +19,8 @@ data class Animation(
     val name: String,
     val bgColor: String,
     val lottieUrl: String,
-    val gifUrl: String,
-    val videoUrl: String,
+    val gifUrl: String?,
+    val videoUrl: String?,
     val imageUrl: String,
     @Serializable(with = InstantSerializer::class)
     val createdAt: Instant,

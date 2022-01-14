@@ -38,7 +38,7 @@ interface AnimationDao {
     @Transaction
     suspend fun addAllRecent(list: List<RecentAnimation>) {
         list.forEach {
-            if (add(DetailedAnimation(it.animation, recent = it.recent)) != -1L) {
+            if (add(DetailedAnimation(it.animation, recent = it.recent)) == -1L) {
                 update(it)
             }
         }
@@ -47,7 +47,7 @@ interface AnimationDao {
     @Transaction
     suspend fun addAllPopular(list: List<PopularAnimation>) {
         list.forEach {
-            if (add(DetailedAnimation(it.animation, popular = it.popular)) != -1L) {
+            if (add(DetailedAnimation(it.animation, popular = it.popular)) == -1L) {
                 update(it)
             }
         }
@@ -56,7 +56,7 @@ interface AnimationDao {
     @Transaction
     suspend fun addAllFeatured(list: List<FeaturedAnimation>) {
         list.forEach {
-            if (add(DetailedAnimation(it.animation, featured = it.featured)) != -1L) {
+            if (add(DetailedAnimation(it.animation, featured = it.featured)) == -1L) {
                 update(it)
             }
         }

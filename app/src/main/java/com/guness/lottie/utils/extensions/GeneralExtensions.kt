@@ -3,6 +3,7 @@ package com.guness.lottie.utils.extensions
 import android.content.Context
 import android.content.ContextWrapper
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.UriHandler
 import com.guness.lottie.core.LottieActivity
@@ -26,3 +27,5 @@ fun isPreview(): Boolean {
     }
     return true
 }
+
+fun String.toColor() = Color(removePrefix("#").padStart(8, 'F').toLong(16))

@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "3da97b5e658c22d36a05cc89c907c1b6",
+    "identityHash": "4d51dbb88392ebbb794b054caae979da",
     "entities": [
       {
         "tableName": "Animation",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`animationId` INTEGER NOT NULL, `recent` INTEGER, `popular` INTEGER, `featured` INTEGER, `id` INTEGER NOT NULL, `name` TEXT NOT NULL, `bgColor` TEXT NOT NULL, `lottieUrl` TEXT NOT NULL, `gifUrl` TEXT NOT NULL, `videoUrl` TEXT NOT NULL, `imageUrl` TEXT NOT NULL, `createdAt` INTEGER NOT NULL, `createdBy` TEXT NOT NULL, PRIMARY KEY(`animationId`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`animationId` INTEGER NOT NULL, `recent` INTEGER, `popular` INTEGER, `featured` INTEGER, `id` INTEGER NOT NULL, `name` TEXT NOT NULL, `bgColor` TEXT NOT NULL, `lottieUrl` TEXT NOT NULL, `gifUrl` TEXT, `videoUrl` TEXT, `imageUrl` TEXT NOT NULL, `createdAt` INTEGER NOT NULL, `createdBy` TEXT NOT NULL, PRIMARY KEY(`animationId`))",
         "fields": [
           {
             "fieldPath": "animationId",
@@ -60,13 +60,13 @@
             "fieldPath": "animation.gifUrl",
             "columnName": "gifUrl",
             "affinity": "TEXT",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "animation.videoUrl",
             "columnName": "videoUrl",
             "affinity": "TEXT",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "animation.imageUrl",
@@ -170,7 +170,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '3da97b5e658c22d36a05cc89c907c1b6')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '4d51dbb88392ebbb794b054caae979da')"
     ]
   }
 }

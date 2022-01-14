@@ -20,3 +20,5 @@ val Radius = Radius(
     s = 8.dp,
     l = 16.dp
 )
+
+val GoldenRatio = 1.61803398875f

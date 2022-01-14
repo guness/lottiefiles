@@ -3,6 +3,7 @@ package com.guness.lottie.ui.activities.main.home
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -13,14 +14,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.guness.lottie.R
-import com.guness.lottie.data.db.AnimatorDao
-import com.guness.lottie.data.dto.Animation
 import com.guness.lottie.data.dto.Animator
-import com.guness.lottie.data.dto.ApiResponse
 import com.guness.lottie.data.dto.Blog
-import com.guness.lottie.data.repo.AnimatorRepository
-import com.guness.lottie.data.useCases.FetchAnimatorsUseCase
-import com.guness.lottie.data.webservice.ApiWebservice
 import com.guness.lottie.ui.theme.*
 import com.guness.lottie.utils.OnClick
 import com.guness.lottie.utils.widget.TopBackground
@@ -30,11 +25,21 @@ import kotlinx.coroutines.flow.emptyFlow
 @Composable
 fun HomeScreen(onPractice: OnClick, onSubscribe: OnClick, viewModel: HomeViewModel = hiltViewModel()) {
 
-    LaunchedEffect(key1 = "animators") {
-        viewModel.loadAnimators()
+    LaunchedEffect(key1 = "data") {
+        viewModel.loadData()
     }
+    ScreenContent(onPractice, onSubscribe, viewModel.animators, viewModel.blogs)
+}
 
-    val animators by viewModel.animators.collectAsState(initial = emptyList())
+@Composable
+private fun ScreenContent(
+    onPractice: OnClick, onSubscribe: OnClick,
+    _animators: Flow<List<Animator>>,
+    _blogs: Flow<List<Blog>>,
+) {
+
+    val animators by _animators.collectAsState(initial = emptyList())
+    val blogs by _blogs.collectAsState(initial = emptyList())
 
     val cardModifier = Modifier
         .fillMaxWidth()
@@ -95,38 +100,26 @@ fun HomeScreen(onPractice: OnClick, onSubscribe: OnClick, viewModel: HomeViewMod
                 )
             }
             item {
-                PremiumCard(modifier = cardModifier, onSubscribeClick = onSubscribe)
+                Title2(
+                    text = stringResource(id = R.string.home_blogs),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(start = Padding.s, top = Padding.m, end = Padding.xxl)
+                )
+            }
+            items(blogs) {
+                BlogCard(
+                    blog = it,
+                    modifier = Modifier
+                        .padding(start = Padding.s, top = Padding.s, end = Padding.s)
+                )
             }
         }
     }
 }
 
-@Preview(showBackground = true)
+@Preview(showBackground = true, heightDp = 1600)
 @Composable
 private fun HomePreview() = LottieTheme {
-    val apiWebservice = object : ApiWebservice {
-        override suspend fun getFeaturedAnimations(): ApiResponse<Animation> = ApiResponse()
-
-        override suspend fun getPopularAnimations(): ApiResponse<Animation> = ApiResponse()
-
-        override suspend fun getRecentAnimations(): ApiResponse<Animation> = ApiResponse()
-
-        override suspend fun getAnimators(): ApiResponse<Animator> = ApiResponse()
-
-        override suspend fun getBlogs(): ApiResponse<Blog> = ApiResponse()
-    }
-
-    val dao = object : AnimatorDao {
-        override suspend fun add(animator: Animator): Long = -1
-
-        override suspend fun addAll(list: List<Animator>) = Unit
-
-        override fun observeAll(): Flow<List<Animator>> = emptyFlow()
-
-        override suspend fun clear() = Unit
-    }
-
-    val repo = AnimatorRepository(apiWebservice, dao)
-
-    HomeScreen({}, {}, HomeViewModel(AnimatorRepository(apiWebservice, dao), FetchAnimatorsUseCase(repo)))
+    ScreenContent({}, {}, emptyFlow(), emptyFlow())
 }

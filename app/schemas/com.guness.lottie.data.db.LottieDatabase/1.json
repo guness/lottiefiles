@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "f279943ab3979631cb2486b7db63ddee",
+    "identityHash": "3da97b5e658c22d36a05cc89c907c1b6",
     "entities": [
       {
         "tableName": "Animation",
@@ -130,7 +130,7 @@
       },
       {
         "tableName": "Blog",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `title` TEXT NOT NULL, `postedAt` TEXT NOT NULL, `imageUrl` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `title` TEXT NOT NULL, `postedAt` INTEGER NOT NULL, `imageUrl` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -147,7 +147,7 @@
           {
             "fieldPath": "postedAt",
             "columnName": "postedAt",
-            "affinity": "TEXT",
+            "affinity": "INTEGER",
             "notNull": true
           },
           {
@@ -170,7 +170,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'f279943ab3979631cb2486b7db63ddee')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '3da97b5e658c22d36a05cc89c907c1b6')"
     ]
   }
 }

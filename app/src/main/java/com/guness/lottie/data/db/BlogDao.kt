@@ -1,12 +1,7 @@
 package com.guness.lottie.data.db
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
-import com.guness.lottie.data.db.LottieDatabase.Companion.TABLE_ANIMATOR
+import androidx.room.*
 import com.guness.lottie.data.db.LottieDatabase.Companion.TABLE_BLOG
-import com.guness.lottie.data.dto.Animator
 import com.guness.lottie.data.dto.Blog
 import kotlinx.coroutines.flow.Flow
 
@@ -24,4 +19,10 @@ interface BlogDao {
 
     @Query("DELETE FROM $TABLE_BLOG")
     suspend fun clear()
+
+    @Transaction
+    suspend fun setAll(list: List<Blog>) {
+        clear()
+        addAll(list)
+    }
 }

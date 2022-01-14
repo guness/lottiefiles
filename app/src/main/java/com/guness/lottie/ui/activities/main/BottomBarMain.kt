@@ -25,8 +25,8 @@ import kotlinx.coroutines.launch
 
 private val items = listOf(
     BottomBarItem(Screen.Home, R.string.nav_home, R.drawable.ic_home, R.drawable.ic_home_filled),
-    BottomBarItem(Screen.Category, R.string.nav_category, R.drawable.ic_category, R.drawable.ic_category_filled),
-    BottomBarItem(Screen.Favorite, R.string.nav_favorite, R.drawable.ic_heart, R.drawable.ic_heart_filled),
+    BottomBarItem(Screen.Popular, R.string.nav_popular, R.drawable.ic_heart, R.drawable.ic_heart_filled),
+    BottomBarItem(Screen.Recent, R.string.nav_recent, R.drawable.ic_category, R.drawable.ic_category_filled),
     BottomBarItem(Screen.Profile, R.string.nav_profile, R.drawable.ic_profile, R.drawable.ic_profile_filled)
 )
 

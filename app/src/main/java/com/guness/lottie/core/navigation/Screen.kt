@@ -5,8 +5,8 @@ package com.guness.lottie.core.navigation
  */
 sealed class Screen(val route: String) {
     object Home : Screen(route = "home")
-    object Category : Screen(route = "category")
-    object Favorite : Screen(route = "favorite")
+    object Popular : Screen(route = "popular")
+    object Recent : Screen(route = "recent")
     object Profile : Screen(route = "profile")
 }
 
@@ -14,8 +14,8 @@ sealed class LeafScreen(private val route: String) {
     fun createRoute(root: Screen) = "${root.route}/$route"
 
     object Home : LeafScreen(route = Screen.Home.route)
-    object Category : LeafScreen(route = Screen.Category.route)
-    object Favorite : LeafScreen(route = Screen.Favorite.route)
+    object Popular : LeafScreen(route = Screen.Popular.route)
+    object Recent : LeafScreen(route = Screen.Recent.route)
     object Profile : LeafScreen(route = Screen.Profile.route)
 
     object Practice : LeafScreen(route = "practice")

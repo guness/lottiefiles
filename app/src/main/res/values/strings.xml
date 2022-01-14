@@ -2,8 +2,8 @@
     <string name="app_name">LottieFiles</string>
 
     <string name="nav_home">Home</string>
-    <string name="nav_category">Categories</string>
-    <string name="nav_favorite">Favorites</string>
+    <string name="nav_popular">Popular</string>
+    <string name="nav_recent">Recent</string>
     <string name="nav_profile">Profile</string>
 
     <string name="home_daily_practice">Daily affirmation practice</string>

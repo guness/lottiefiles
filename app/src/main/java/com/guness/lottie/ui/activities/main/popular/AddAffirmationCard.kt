@@ -1,4 +1,4 @@
-package com.guness.lottie.ui.activities.main.favorite
+package com.guness.lottie.ui.activities.main.popular
 
 
 import androidx.compose.foundation.clickable

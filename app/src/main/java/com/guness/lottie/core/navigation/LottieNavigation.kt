@@ -8,10 +8,10 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
-import com.guness.lottie.ui.activities.main.category.CategoryScreen
-import com.guness.lottie.ui.activities.main.favorite.FavoriteScreen
+import com.guness.lottie.ui.activities.main.recent.RecentScreen
 import com.guness.lottie.ui.activities.main.home.HomeScreen
 import com.guness.lottie.ui.activities.main.home.practice.PracticeScreen
+import com.guness.lottie.ui.activities.main.popular.PopularScreen
 import com.guness.lottie.ui.activities.main.profile.ProfileScreen
 import com.guness.lottie.utils.OnClick
 
@@ -31,8 +31,8 @@ internal fun LottieNavigation(
         modifier = modifier,
     ) {
         addTopLevelHome(navController, onSubscribe)
-        addTopLevelCategory(onSubscribe)
-        addTopLevelFavorite(onSubscribe)
+        addTopLevelPopular(onSubscribe)
+        addTopLevelRecent(onSubscribe)
         addTopLevelProfile(onSubscribe)
     }
 }
@@ -47,21 +47,21 @@ private fun NavGraphBuilder.addTopLevelHome(navController: NavController, onSubs
     }
 }
 
-private fun NavGraphBuilder.addTopLevelCategory(onSubscribe: OnClick) {
+private fun NavGraphBuilder.addTopLevelRecent(onSubscribe: OnClick) {
     navigation(
-        route = Screen.Category.route,
-        startDestination = LeafScreen.Category.createRoute(Screen.Category),
+        route = Screen.Recent.route,
+        startDestination = LeafScreen.Recent.createRoute(Screen.Recent),
     ) {
-        addCategory(Screen.Category, onSubscribe)
+        addRecent(Screen.Recent, onSubscribe)
     }
 }
 
-private fun NavGraphBuilder.addTopLevelFavorite(onSubscribe: OnClick) {
+private fun NavGraphBuilder.addTopLevelPopular(onSubscribe: OnClick) {
     navigation(
-        route = Screen.Favorite.route,
-        startDestination = LeafScreen.Favorite.createRoute(Screen.Favorite),
+        route = Screen.Popular.route,
+        startDestination = LeafScreen.Popular.createRoute(Screen.Popular),
     ) {
-        addFavorite(Screen.Favorite, onSubscribe)
+        addPopular(Screen.Popular, onSubscribe)
     }
 }
 
@@ -89,21 +89,21 @@ private fun NavGraphBuilder.addHome(
     }
 }
 
-private fun NavGraphBuilder.addCategory(
+private fun NavGraphBuilder.addRecent(
     root: Screen,
     onSubscribe: OnClick
 ) {
-    composable(LeafScreen.Category.createRoute(root)) {
-        CategoryScreen(onSubscribe = onSubscribe)
+    composable(LeafScreen.Recent.createRoute(root)) {
+        RecentScreen(onSubscribe = onSubscribe)
     }
 }
 
-private fun NavGraphBuilder.addFavorite(
+private fun NavGraphBuilder.addPopular(
     root: Screen,
     onSubscribe: OnClick
 ) {
-    composable(LeafScreen.Favorite.createRoute(root)) {
-        FavoriteScreen(onSubscribe = onSubscribe)
+    composable(LeafScreen.Popular.createRoute(root)) {
+        PopularScreen(onSubscribe = onSubscribe)
     }
 }
 

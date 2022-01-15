@@ -12,7 +12,6 @@ import com.guness.lottie.core.LottieActivity
 import com.guness.lottie.ui.activities.animation.AnimationScreen
 import com.guness.lottie.ui.activities.main.BottomBar
 import com.guness.lottie.ui.activities.main.BottomBarMain
-import com.guness.lottie.ui.activities.subscribe.SubscribeScreen
 import com.guness.lottie.ui.theme.Radius
 import com.guness.lottie.ui.theme.LottieTheme
 import dagger.hilt.android.AndroidEntryPoint

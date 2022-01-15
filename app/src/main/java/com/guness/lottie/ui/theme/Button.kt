@@ -16,13 +16,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.guness.lottie.R
-import com.guness.lottie.utils.OnClick
+import com.guness.lottie.utils.Callback
 
 @Composable
 fun MiniButton(
-    onClick: OnClick, modifier: Modifier = Modifier, @DrawableRes id: Int
+    onClick: Callback<Unit>, modifier: Modifier = Modifier, @DrawableRes id: Int
 ) = IconButton(
-    onClick = onClick,
+    onClick = { onClick(Unit) },
     modifier = modifier
         .padding(Padding.s)
         .size(Padding.l)
@@ -38,14 +38,14 @@ fun MiniButton(
 
 @Composable
 fun BigButton(
-    onClick: OnClick,
+    onClick: Callback<Unit>,
     text: String,
     modifier: Modifier = Modifier,
     color: ButtonColor = ButtonColor.Blue,
     overline: String? = null,
     @DrawableRes id: Int? = null
 ) = Button(
-    onClick = onClick,
+    onClick = { onClick(Unit) },
     modifier = modifier
         .fillMaxWidth()
         .defaultMinSize(minHeight = 56.dp),
@@ -89,9 +89,9 @@ fun BigButton(
 
 @Composable
 fun LabelButton(
-    onClick: OnClick, text: String, modifier: Modifier = Modifier
+    onClick: Callback<Unit>, text: String, modifier: Modifier = Modifier
 ) = TextButton(
-    onClick = onClick,
+    onClick = { onClick(Unit) },
     modifier = modifier
         .defaultMinSize(minHeight = 48.dp)
 ) {

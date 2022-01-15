@@ -33,18 +33,6 @@
     <string name="profile_achievements">Achievements</string>
     <string name="profile_no_achievements">You didn\'t unlock any achievements yet.</string>
 
-    <string name="subscribe_title">Control your subconscious mind</string>
-    <string name="subscribe_restore">Restore Purchases</string>
-    <string name="subscribe_privacy">Privacy Policy</string>
-    <string name="subscribe_tos">Terms of Service</string>
-    <string name="subscribe_explained">Payment is made via your Google Play Account and will renew automatically at the same price within 24 hours of expiry, a month after purchase. You can manage and cancel your subscription via your Google Play Account settings.</string>
-    <array name="subscribe_premium_checks">
-        <item>Practice affirmations with nature sound</item>
-        <item>Practice more than 600+ affirmations within 9 categories</item>
-        <item>Track and see your mood changes on a beautifully designed app.</item>
-        <item>Add your own affirmations and practice your own affirmations</item>
-    </array>
-
     <string name="start">Start</string>
     <string name="share">Share</string>
     <string name="subscribe">Subscribe</string>

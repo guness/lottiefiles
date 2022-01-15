@@ -18,7 +18,7 @@ import com.guness.lottie.ui.theme.BottomBarHeight
 import com.guness.lottie.ui.theme.LargeTitle
 import com.guness.lottie.ui.theme.LottieTheme
 import com.guness.lottie.ui.theme.Padding
-import com.guness.lottie.utils.OnClick
+import com.guness.lottie.utils.Callback
 import com.guness.lottie.utils.compose.items
 import com.guness.lottie.utils.widget.TopBackground
 import kotlinx.coroutines.flow.Flow
@@ -26,17 +26,17 @@ import kotlinx.coroutines.flow.emptyFlow
 
 
 @Composable
-fun RecentScreen(onSubscribe: OnClick, viewModel: RecentViewModel = hiltViewModel()) {
+fun RecentScreen(onAnimationClick: Callback<Long>, viewModel: RecentViewModel = hiltViewModel()) {
 
     LaunchedEffect(key1 = "data") {
         viewModel.loadData()
     }
-    ScreenContent(onSubscribe, viewModel.recent)
+    ScreenContent(onAnimationClick, viewModel.recent)
 }
 
 @Composable
 private fun ScreenContent(
-    onSubscribe: OnClick,
+    onAnimationClick: Callback<Long>,
     _recent: Flow<List<Animation>>,
 ) {
     val recent by _recent.collectAsState(initial = emptyList())
@@ -60,7 +60,7 @@ private fun ScreenContent(
                 RecentCard(
                     animation = animation,
                     modifier = Modifier.padding(Padding.xs)
-                ) { onSubscribe() }
+                ) { onAnimationClick(animation.id) }
             }
         }
     }

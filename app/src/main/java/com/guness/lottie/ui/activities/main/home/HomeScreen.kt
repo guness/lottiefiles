@@ -18,24 +18,23 @@ import com.guness.lottie.data.dto.Animation
 import com.guness.lottie.data.dto.Animator
 import com.guness.lottie.data.dto.Blog
 import com.guness.lottie.ui.theme.*
-import com.guness.lottie.utils.OnClick
+import com.guness.lottie.utils.Callback
 import com.guness.lottie.utils.widget.TopBackground
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emptyFlow
 
 @Composable
-fun HomeScreen(onPractice: OnClick, onSubscribe: OnClick, viewModel: HomeViewModel = hiltViewModel()) {
+fun HomeScreen(onAnimationClick: Callback<Long>, viewModel: HomeViewModel = hiltViewModel()) {
 
     LaunchedEffect(key1 = "data") {
         viewModel.loadData()
     }
-    ScreenContent(onPractice, onSubscribe, viewModel.featured, viewModel.animators, viewModel.blogs)
+    ScreenContent(onAnimationClick, viewModel.featured, viewModel.animators, viewModel.blogs)
 }
 
 @Composable
 private fun ScreenContent(
-    onPractice: OnClick,
-    onSubscribe: OnClick,
+    onAnimationClick: Callback<Long>,
     _featured: Flow<List<Animation>>,
     _animators: Flow<List<Animator>>,
     _blogs: Flow<List<Blog>>,
@@ -122,5 +121,5 @@ private fun ScreenContent(
 @Preview(showBackground = true, heightDp = 1600)
 @Composable
 private fun HomePreview() = LottieTheme {
-    ScreenContent({}, {}, emptyFlow(), emptyFlow(), emptyFlow())
+    ScreenContent({}, emptyFlow(), emptyFlow(), emptyFlow())
 }

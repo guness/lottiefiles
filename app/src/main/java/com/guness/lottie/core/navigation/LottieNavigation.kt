@@ -8,12 +8,12 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
-import com.guness.lottie.ui.activities.main.recent.RecentScreen
 import com.guness.lottie.ui.activities.main.home.HomeScreen
 import com.guness.lottie.ui.activities.main.home.practice.PracticeScreen
 import com.guness.lottie.ui.activities.main.popular.PopularScreen
 import com.guness.lottie.ui.activities.main.profile.ProfileScreen
-import com.guness.lottie.utils.OnClick
+import com.guness.lottie.ui.activities.main.recent.RecentScreen
+import com.guness.lottie.utils.Callback
 
 /**
  * Created by guness on 21.11.2021 15:25
@@ -22,7 +22,7 @@ import com.guness.lottie.utils.OnClick
 @Composable
 internal fun LottieNavigation(
     navController: NavHostController,
-    onSubscribe: OnClick,
+    onAnimationClick: Callback<Long>,
     modifier: Modifier = Modifier,
 ) {
     NavHost(
@@ -30,89 +30,84 @@ internal fun LottieNavigation(
         startDestination = Screen.Home.route,
         modifier = modifier,
     ) {
-        addTopLevelHome(navController, onSubscribe)
-        addTopLevelPopular(onSubscribe)
-        addTopLevelRecent(onSubscribe)
-        addTopLevelProfile(onSubscribe)
+        addTopLevelHome(navController, onAnimationClick)
+        addTopLevelPopular(onAnimationClick)
+        addTopLevelRecent(onAnimationClick)
+        addTopLevelProfile(onAnimationClick)
     }
 }
 
-private fun NavGraphBuilder.addTopLevelHome(navController: NavController, onSubscribe: OnClick) {
+private fun NavGraphBuilder.addTopLevelHome(navController: NavController, onAnimationClick: Callback<Long>) {
     navigation(
         route = Screen.Home.route,
         startDestination = LeafScreen.Home.createRoute(Screen.Home),
     ) {
-        addHome(navController, Screen.Home, onSubscribe)
+        addHome(navController, Screen.Home, onAnimationClick)
         addPractice(Screen.Home)
     }
 }
 
-private fun NavGraphBuilder.addTopLevelRecent(onSubscribe: OnClick) {
+private fun NavGraphBuilder.addTopLevelRecent(onAnimationClick: Callback<Long>) {
     navigation(
         route = Screen.Recent.route,
         startDestination = LeafScreen.Recent.createRoute(Screen.Recent),
     ) {
-        addRecent(Screen.Recent, onSubscribe)
+        addRecent(Screen.Recent, onAnimationClick)
     }
 }
 
-private fun NavGraphBuilder.addTopLevelPopular(onSubscribe: OnClick) {
+private fun NavGraphBuilder.addTopLevelPopular(onAnimationClick: Callback<Long>) {
     navigation(
         route = Screen.Popular.route,
         startDestination = LeafScreen.Popular.createRoute(Screen.Popular),
     ) {
-        addPopular(Screen.Popular, onSubscribe)
+        addPopular(Screen.Popular, onAnimationClick)
     }
 }
 
-private fun NavGraphBuilder.addTopLevelProfile(onSubscribe: OnClick) {
+private fun NavGraphBuilder.addTopLevelProfile(onAnimationClick: Callback<Long>) {
     navigation(
         route = Screen.Profile.route,
         startDestination = LeafScreen.Profile.createRoute(Screen.Profile),
     ) {
-        addProfile(Screen.Profile, onSubscribe)
+        addProfile(Screen.Profile, onAnimationClick)
     }
 }
 
 private fun NavGraphBuilder.addHome(
     navController: NavController,
     root: Screen,
-    onSubscribe: OnClick
+    onAnimationClick: Callback<Long>
 ) {
     composable(LeafScreen.Home.createRoute(root)) {
-        HomeScreen(
-            onPractice = {
-                navController.navigate(LeafScreen.Practice.createRoute(root))
-            },
-            onSubscribe = onSubscribe
-        )
+        HomeScreen(onAnimationClick = onAnimationClick)
     }
 }
 
 private fun NavGraphBuilder.addRecent(
     root: Screen,
-    onSubscribe: OnClick
+    onAnimationClick: Callback<Long>
 ) {
     composable(LeafScreen.Recent.createRoute(root)) {
-        RecentScreen(onSubscribe = onSubscribe)
+        RecentScreen(onAnimationClick = onAnimationClick)
     }
 }
 
 private fun NavGraphBuilder.addPopular(
     root: Screen,
-    onSubscribe: OnClick
+    onAnimationClick: Callback<Long>
 ) {
     composable(LeafScreen.Popular.createRoute(root)) {
-        PopularScreen(onSubscribe = onSubscribe)
+        PopularScreen(onAnimationClick = onAnimationClick)
     }
 }
 
 private fun NavGraphBuilder.addProfile(
     root: Screen,
-    onSubscribe: OnClick
+    onAnimationClick: Callback<Long>
 ) {
     composable(LeafScreen.Profile.createRoute(root)) {
-        ProfileScreen(onSubscribe = onSubscribe)
+        ProfileScreen(onAnimationClick = onAnimationClick)
     }
 }
 

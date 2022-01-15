@@ -25,7 +25,7 @@ import com.airbnb.lottie.compose.rememberLottieComposition
 import com.guness.lottie.data.dto.Animation
 import com.guness.lottie.data.dto.Animator
 import com.guness.lottie.ui.theme.*
-import com.guness.lottie.utils.OnClick
+import com.guness.lottie.utils.Callback
 import com.guness.lottie.utils.extensions.toColor
 import java.time.Instant
 
@@ -36,7 +36,7 @@ import java.time.Instant
 private val SIZE = 32.dp
 
 @Composable
-fun PopularCard(modifier: Modifier = Modifier, animation: Animation, onCategoryClick: OnClick = {}) {
+fun PopularCard(modifier: Modifier = Modifier, animation: Animation, onAnimationClick: Callback<Long> = {}) {
     Card(
         modifier = modifier
             .fillMaxWidth()

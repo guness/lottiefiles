@@ -12,21 +12,21 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.guness.lottie.R
 import com.guness.lottie.ui.theme.BottomBarHeight
 import com.guness.lottie.ui.theme.LargeTitle
-import com.guness.lottie.ui.theme.Padding
 import com.guness.lottie.ui.theme.LottieTheme
-import com.guness.lottie.utils.OnClick
+import com.guness.lottie.ui.theme.Padding
+import com.guness.lottie.utils.Callback
 import com.guness.lottie.utils.widget.TopBackground
 
 @Composable
-fun ProfileScreen(onSubscribe: OnClick, viewModel: ProfileViewModel = hiltViewModel()) {
+fun ProfileScreen(onAnimationClick: Callback<Long>, viewModel: ProfileViewModel = hiltViewModel()) {
     val onProfileClick = { item: ProfileItem ->
         when (item) {
             ProfileItem.AVATAR -> Unit /*TODO*/
             ProfileItem.NAME -> Unit /*TODO*/
             ProfileItem.ACCOUNT -> Unit /*TODO*/
-            ProfileItem.REMAINDER -> onSubscribe()
+            ProfileItem.REMAINDER -> Unit /*TODO*/
             ProfileItem.SETTINGS -> Unit /*TODO*/
-            ProfileItem.APPEARANCE -> onSubscribe()
+            ProfileItem.APPEARANCE -> Unit /*TODO*/
         }
     }
     Box(

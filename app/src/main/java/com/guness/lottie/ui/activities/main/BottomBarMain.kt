@@ -81,6 +81,8 @@ fun BottomBarMain(navController: NavHostController, bottomSheetState: ModalBotto
     }
 
     LottieNavigation(navController = navController, onSubscribe = {
-        scope.launch { bottomSheetState.animateTo(ModalBottomSheetValue.Expanded) }
+        scope.launch {
+            bottomSheetState.animateTo(ModalBottomSheetValue.Expanded)
+        }
     })
 }

@@ -9,6 +9,7 @@ import androidx.compose.runtime.getValue
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.guness.lottie.core.LottieActivity
+import com.guness.lottie.ui.activities.animation.AnimationScreen
 import com.guness.lottie.ui.activities.main.BottomBar
 import com.guness.lottie.ui.activities.main.BottomBarMain
 import com.guness.lottie.ui.activities.subscribe.SubscribeScreen
@@ -45,7 +46,8 @@ fun MainView() {
 
     ModalBottomSheetLayout(
         sheetState = modalBottomSheetState,
-        sheetContent = { SubscribeScreen() },
+        sheetContent = {
+            AnimationScreen() },
         sheetShape = RoundedCornerShape(topStart = Radius.l, topEnd = Radius.l)
     ) {
         Scaffold(

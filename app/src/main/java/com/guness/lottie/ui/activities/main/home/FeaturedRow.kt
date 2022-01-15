@@ -19,7 +19,7 @@ import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.guness.lottie.data.dto.Animation
 import com.guness.lottie.data.dto.Animator
-import com.guness.lottie.ui.activities.main.Shimmer
+import com.guness.lottie.utils.widget.Shimmer
 import com.guness.lottie.ui.theme.*
 import com.guness.lottie.utils.extensions.toColor
 import java.time.Instant
@@ -59,15 +59,15 @@ fun FeaturedPlaceholder(modifier: Modifier = Modifier) {
 @Composable
 fun FeaturedView(animation: Animation, modifier: Modifier = Modifier) {
     Column(
-        modifier = modifier
-            .width(WIDTH)
+        modifier = modifier.width(WIDTH)
     ) {
         Box(
             modifier = Modifier
-                .clip(RoundedCornerShape(Radius.l))
-                .background(animation.bgColor.toColor())
                 .fillMaxSize()
                 .aspectRatio(GoldenRatio)
+                .clip(RoundedCornerShape(Radius.l))
+                .background(animation.bgColor.toColor())
+
         ) {
             val composition by rememberLottieComposition(LottieCompositionSpec.Url(animation.lottieUrl))
             LottieAnimation(

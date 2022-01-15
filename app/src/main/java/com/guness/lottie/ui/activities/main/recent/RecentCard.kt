@@ -33,13 +33,14 @@ fun RecentCard(modifier: Modifier = Modifier, animation: Animation, onCategoryCl
         modifier = modifier
             .fillMaxWidth()
             .aspectRatio(GoldenRatio)
+
     ) {
-        val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.brightness))
+        val composition by rememberLottieComposition(LottieCompositionSpec.Url(animation.lottieUrl))
         LottieAnimation(
             composition,
             modifier = Modifier
                 .fillMaxSize()
-                .background("#22292F".toColor()),
+                .background(animation.bgColor.toColor()),
             iterations = LottieConstants.IterateForever,
             contentScale = ContentScale.Fit
         )

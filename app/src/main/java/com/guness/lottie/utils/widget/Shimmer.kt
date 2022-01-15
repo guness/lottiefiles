@@ -1,4 +1,4 @@
-package com.guness.lottie.ui.activities.main
+package com.guness.lottie.utils.widget
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box

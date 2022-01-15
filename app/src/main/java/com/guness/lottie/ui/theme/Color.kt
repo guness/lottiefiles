@@ -13,20 +13,22 @@ val Teal200 = Color(0xFF03DAC5)
 val LottiePink = Color(0xFFF8BBD0)
 
 val DayThemeAccent = Color(0xFF5F57CF)
-val DayThemeBody = Color(0xFF423E6F)
+val DayThemeBody = Color(0xFF322E5F)
 val DayThemeCards = Color.White
 val DayThemeBackground = Color(0xFFECECEC)
 val DayThemeSeparator = Color(0xFFC6C6C8)
-val DayThemeGrey = Color(0xFF6E6E6E)
+val DayThemeGrey = Color(0xFF5E5E5E)
 val DayThemeTitles = Color(0xFF201C54)
 
 val NightThemeAccent = Color(0xFF6357FF)
-val NightThemeBody = Color(0xFF948EE4)
+val NightThemeBody = Color(0xFFD4CEFF)
 val NightThemeCards = DayThemeTitles
 val NightThemeBackground = Color(0xFF1B173D)
 val NightThemeSeparator = Color(0xFF47446F)
-val NightThemeGrey = Color(0xFF8D88BA)
+val NightThemeGrey = Color(0xFFCDC8FA)
 val NightThemeTitles = DayThemeCards
+
+const val TransparentAlpha = 0.5f
 
 private val gradientColors = arrayOf(
     0 to Color(0xFFF8BBD0),

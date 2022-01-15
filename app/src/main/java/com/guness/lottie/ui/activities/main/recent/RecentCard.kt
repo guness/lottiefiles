@@ -1,24 +1,30 @@
 package com.guness.lottie.ui.activities.main.recent
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
+import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import coil.compose.rememberImagePainter
 import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.rememberLottieComposition
-import com.guness.lottie.R
 import com.guness.lottie.data.dto.Animation
 import com.guness.lottie.data.dto.Animator
-import com.guness.lottie.ui.theme.GoldenRatio
-import com.guness.lottie.ui.theme.LottieTheme
+import com.guness.lottie.ui.theme.*
 import com.guness.lottie.utils.OnClick
 import com.guness.lottie.utils.extensions.toColor
 import java.time.Instant
@@ -27,23 +33,48 @@ import java.time.Instant
  * Created by guness on 8.11.2021 11:59
  */
 
+private val SIZE = 24.dp
+
 @Composable
 fun RecentCard(modifier: Modifier = Modifier, animation: Animation, onCategoryClick: OnClick = {}) {
-    Card(
+
+    Column(
         modifier = modifier
             .fillMaxWidth()
-            .aspectRatio(GoldenRatio)
-
+            .clip(RoundedCornerShape(Radius.l))
+            .background(MaterialTheme.colors.surface.copy(alpha = TransparentAlpha))
     ) {
-        val composition by rememberLottieComposition(LottieCompositionSpec.Url(animation.lottieUrl))
-        LottieAnimation(
-            composition,
+        Card {
+            val composition by rememberLottieComposition(LottieCompositionSpec.Url(animation.lottieUrl))
+            LottieAnimation(
+                composition,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(animation.bgColor.toColor())
+                    .aspectRatio(GoldenRatio),
+                iterations = LottieConstants.IterateForever,
+                contentScale = ContentScale.Fit
+            )
+        }
+        Row(
             modifier = Modifier
-                .fillMaxSize()
-                .background(animation.bgColor.toColor()),
-            iterations = LottieConstants.IterateForever,
-            contentScale = ContentScale.Fit
-        )
+                .fillMaxWidth()
+                .padding(Padding.xs),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Image(
+                painter = rememberImagePainter(animation.createdBy.avatarUrl),
+                contentDescription = null,
+                modifier = Modifier
+                    .size(SIZE)
+                    .clip(CircleShape)
+                    .border(1.dp, Color.Gray, CircleShape),
+                contentScale = ContentScale.Crop
+            )
+            Spacer(modifier = Modifier.width(Padding.xs))
+            Footnote2(text = animation.name, maxLines = 1)
+        }
     }
 }
 

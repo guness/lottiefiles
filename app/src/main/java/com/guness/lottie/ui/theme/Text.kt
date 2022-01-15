@@ -40,12 +40,13 @@ fun Title2(text: String, modifier: Modifier = Modifier, textAlign: TextAlign? = 
 )
 
 @Composable
-fun Body1(text: String, modifier: Modifier = Modifier, color: Color = MaterialTheme.colors.primaryVariant) = Text(
+fun Body1(text: String, modifier: Modifier = Modifier, color: Color = MaterialTheme.colors.primaryVariant, textAlign: TextAlign? = null) = Text(
     text = text,
     modifier = modifier,
     fontWeight = FontWeight.SemiBold,
     fontSize = 16.sp,
-    color = color
+    color = color,
+    textAlign = textAlign
 )
 
 @Composable
@@ -69,13 +70,14 @@ fun Footnote1(text: String, modifier: Modifier = Modifier, maxLines: Int = Int.M
 )
 
 @Composable
-fun Footnote2(text: String, modifier: Modifier = Modifier, textAlign: TextAlign? = null) = Text(
+fun Footnote2(text: String, modifier: Modifier = Modifier, textAlign: TextAlign? = null, maxLines: Int = Int.MAX_VALUE) = Text(
     text = text,
     modifier = modifier,
     color = MaterialTheme.colors.primaryVariant,
     fontWeight = FontWeight.Normal,
     fontSize = 14.sp,
-    textAlign = textAlign
+    textAlign = textAlign,
+    maxLines = maxLines
 )
 
 @Composable
@@ -88,10 +90,11 @@ fun Caption1(text: String, modifier: Modifier = Modifier) = Text(
 )
 
 @Composable
-fun Caption2(text: String, modifier: Modifier = Modifier) = Text(
+fun Caption2(text: String, modifier: Modifier = Modifier, maxLines: Int = Int.MAX_VALUE) = Text(
     text = text,
     modifier = modifier,
     color = MaterialTheme.colors.secondaryVariant,
     fontWeight = FontWeight.Normal,
     fontSize = 12.sp,
+    maxLines = maxLines,
 )

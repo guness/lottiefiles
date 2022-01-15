@@ -6,6 +6,7 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
+import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -19,9 +20,9 @@ import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.guness.lottie.data.dto.Animation
 import com.guness.lottie.data.dto.Animator
-import com.guness.lottie.utils.widget.Shimmer
 import com.guness.lottie.ui.theme.*
 import com.guness.lottie.utils.extensions.toColor
+import com.guness.lottie.utils.widget.Shimmer
 import java.time.Instant
 
 private val WIDTH = 220.dp
@@ -59,30 +60,40 @@ fun FeaturedPlaceholder(modifier: Modifier = Modifier) {
 @Composable
 fun FeaturedView(animation: Animation, modifier: Modifier = Modifier) {
     Column(
-        modifier = modifier.width(WIDTH)
+        modifier = modifier
+            .width(WIDTH)
+            .clip(RoundedCornerShape(Radius.l))
+            .background(MaterialTheme.colors.surface.copy(alpha = TransparentAlpha))
     ) {
-        Box(
+        val composition by rememberLottieComposition(LottieCompositionSpec.Url(animation.lottieUrl))
+        LottieAnimation(
+            composition,
             modifier = Modifier
-                .fillMaxSize()
+                .fillMaxWidth()
                 .aspectRatio(GoldenRatio)
-                .clip(RoundedCornerShape(Radius.l))
                 .background(animation.bgColor.toColor())
+                .clip(RoundedCornerShape(Radius.l)),
 
-        ) {
-            val composition by rememberLottieComposition(LottieCompositionSpec.Url(animation.lottieUrl))
-            LottieAnimation(
-                composition,
-                modifier = Modifier.fillMaxSize(),
-                iterations = LottieConstants.IterateForever,
-                contentScale = ContentScale.Fit
-            )
-        }
-        Box(modifier = Modifier.padding(top = Padding.xs, end = Padding.m)) {
-            Footnote1(text = animation.name, maxLines = 2)
-        }
-        Box(modifier = Modifier.padding(top = Padding.xs, end = Padding.m)) {
-            Caption1(text = animation.createdBy.name)
-        }
+            iterations = LottieConstants.IterateForever,
+            contentScale = ContentScale.Fit
+        )
+        Footnote1(
+            text = animation.name,
+            modifier = Modifier.padding(
+                start = Padding.xs,
+                top = Padding.xs,
+                end = Padding.xs
+            ),
+            maxLines = 2
+        )
+        Caption1(
+            text = animation.createdBy.name,
+            modifier = Modifier.padding(
+                start = Padding.xs,
+                end = Padding.xs,
+                bottom = Padding.xs
+            ),
+        )
     }
 }
 

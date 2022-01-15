@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
+import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -32,7 +33,7 @@ import java.time.Instant
  * Created by guness on 8.11.2021 11:59
  */
 
-private val WIDTH = 32.dp
+private val SIZE = 32.dp
 
 @Composable
 fun PopularCard(modifier: Modifier = Modifier, animation: Animation, onCategoryClick: OnClick = {}) {
@@ -55,7 +56,7 @@ fun PopularCard(modifier: Modifier = Modifier, animation: Animation, onCategoryC
             Row(
                 modifier = Modifier
                     .clip(RoundedCornerShape(bottomEnd = Radius.l))
-                    .background(Color.White.copy(alpha = 0.3f))
+                    .background(MaterialTheme.colors.surface.copy(alpha = TransparentAlpha))
                     .padding(Padding.xs),
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -63,7 +64,7 @@ fun PopularCard(modifier: Modifier = Modifier, animation: Animation, onCategoryC
                     painter = rememberImagePainter(animation.createdBy.avatarUrl),
                     contentDescription = null,
                     modifier = Modifier
-                        .size(WIDTH)
+                        .size(SIZE)
                         .clip(CircleShape)
                         .border(1.dp, Color.Gray, CircleShape),
                     contentScale = ContentScale.Crop
@@ -74,7 +75,7 @@ fun PopularCard(modifier: Modifier = Modifier, animation: Animation, onCategoryC
                 text = animation.name, modifier = Modifier
                     .align(Alignment.BottomEnd)
                     .clip(RoundedCornerShape(topStart = Radius.l))
-                    .background(Color.White.copy(alpha = 0.3f))
+                    .background(MaterialTheme.colors.surface.copy(alpha = TransparentAlpha))
                     .padding(Padding.xs)
             )
         }

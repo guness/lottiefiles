@@ -1,27 +1,27 @@
 package com.guness.lottie.ui.activities.main.home
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 import com.guness.lottie.data.dto.Animator
-import com.guness.lottie.ui.theme.Footnote1
+import com.guness.lottie.ui.theme.Body1
 import com.guness.lottie.ui.theme.LottieTheme
 import com.guness.lottie.ui.theme.Padding
-import com.guness.lottie.ui.theme.Radius
 
-private val WIDTH = 129.dp
+private val SIZE = 129.dp
 
 @Composable
 fun AnimatorsRow(animators: List<Animator>, modifier: Modifier = Modifier) {
@@ -30,70 +30,35 @@ fun AnimatorsRow(animators: List<Animator>, modifier: Modifier = Modifier) {
         contentPadding = PaddingValues(horizontal = Padding.s),
         horizontalArrangement = Arrangement.spacedBy(Padding.s)
     ) {
-        if (animators.isEmpty()) {
-            items(5) {
-                AnimatorPlaceholder()
-            }
-        } else {
-            items(animators) {
-                AnimatorView(it)
-            }
+        items(animators) {
+            AnimatorView(it)
         }
-    }
-}
-
-@Composable
-fun AnimatorPlaceholder() {
-    @Composable
-    fun Line(width: Dp = WIDTH) = Box(
-        modifier = Modifier
-            .clip(RoundedCornerShape(4.dp))
-            .background(MaterialTheme.colors.onBackground)
-            .size(width = width, height = 10.dp)
-    )
-
-    Column {
-        Box(
-            modifier = Modifier
-                .clip(RoundedCornerShape(Radius.l))
-                .background(MaterialTheme.colors.onBackground)
-                .size(WIDTH)
-        )
-        Spacer(modifier = Modifier.height(14.dp))
-        Line()
-        Spacer(modifier = Modifier.height(8.dp))
-        Line(width = 90.dp)
     }
 }
 
 @Composable
 fun AnimatorView(animator: Animator) {
     Column(
-        modifier = Modifier.width(WIDTH)
+        modifier = Modifier.width(SIZE)
     ) {
-        Box(
+        Image(
+            painter = rememberImagePainter(animator.avatarUrl),
+            contentDescription = null,
             modifier = Modifier
-                .clip(RoundedCornerShape(Radius.l))
-                .background(MaterialTheme.colors.onBackground)
-                .size(WIDTH)
-        ) {
-            Image(
-                painter = rememberImagePainter(animator.avatarUrl),
-                contentDescription = null,
-                modifier = Modifier.size(WIDTH),
-                contentScale = ContentScale.Crop
-            )
-        }
-        Box(modifier = Modifier.padding(top = Padding.xs, end = Padding.m)) {
-            Footnote1(text = animator.name, maxLines = 2)
-        }
+                .size(SIZE)
+                .clip(CircleShape)
+                .border(2.dp, Color.Gray, CircleShape),
+            contentScale = ContentScale.Crop
+        )
+        Body1(
+            text = animator.name,
+            modifier = Modifier
+                .padding(start = Padding.s, top = Padding.xs, end = Padding.s)
+                .width(SIZE),
+            color = MaterialTheme.colors.secondary,
+            textAlign = TextAlign.Center
+        )
     }
-}
-
-@Preview
-@Composable
-private fun PlaceholderPreview() = LottieTheme {
-    AnimatorPlaceholder()
 }
 
 @Preview(showBackground = true)

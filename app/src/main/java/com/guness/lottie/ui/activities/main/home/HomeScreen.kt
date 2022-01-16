@@ -44,10 +44,6 @@ private fun ScreenContent(
     val animators by _animators.collectAsState(initial = emptyList())
     val blogs by _blogs.collectAsState(initial = emptyList())
 
-    val cardModifier = Modifier
-        .fillMaxWidth()
-        .padding(start = Padding.s, top = Padding.m, end = Padding.s)
-
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -82,7 +78,8 @@ private fun ScreenContent(
             item {
                 FeaturedRow(
                     animations = featured,
-                    modifier = Modifier.padding(top = Padding.s)
+                    modifier = Modifier.padding(top = Padding.s),
+                    onAnimationClick = onAnimationClick
                 )
             }
             item {

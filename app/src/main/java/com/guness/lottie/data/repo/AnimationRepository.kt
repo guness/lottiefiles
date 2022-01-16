@@ -20,6 +20,8 @@ class AnimationRepository @Inject constructor(private val webservice: ApiWebserv
     val recent = dao.observeAllRecent()
     val popular = dao.observeAllPopular()
 
+    suspend fun animation(id: Long) = dao.get(id)
+
     suspend fun updateFeatured() {
         val response = webservice.getFeaturedAnimations()
         val animations = response.data?.values?.first()?.results ?: throw UnexpectedApiError()

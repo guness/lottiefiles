@@ -4,8 +4,7 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.guness.lottie.core.LottieActivity
@@ -36,17 +35,19 @@ fun MainView() {
     val navController = rememberNavController()
     val navBackStackEntry by navController.currentBackStackEntryAsState()
 
+    var animationId by remember { mutableStateOf<Long?>(null) }
+
     val modalBottomSheetState = rememberModalBottomSheetState(
         initialValue = ModalBottomSheetValue.Hidden,
         confirmStateChange = {
             it != ModalBottomSheetValue.HalfExpanded
         }
     )
-
     ModalBottomSheetLayout(
         sheetState = modalBottomSheetState,
         sheetContent = {
-            AnimationScreen() },
+            AnimationScreen(animationId)
+        },
         sheetShape = RoundedCornerShape(topStart = Radius.l, topEnd = Radius.l)
     ) {
         Scaffold(
@@ -59,7 +60,9 @@ fun MainView() {
                 }
             }
         ) {
-            BottomBarMain(navController, modalBottomSheetState)
+            BottomBarMain(navController, modalBottomSheetState) {
+                animationId = it
+            }
         }
     }
 }

@@ -3,6 +3,7 @@ package com.guness.lottie.ui.activities.main.recent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -24,6 +25,7 @@ import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.guness.lottie.data.dto.Animation
 import com.guness.lottie.data.dto.Animator
+import com.guness.lottie.data.dto.MockAnimation
 import com.guness.lottie.ui.theme.*
 import com.guness.lottie.utils.Callback
 import com.guness.lottie.utils.extensions.toColor
@@ -42,6 +44,7 @@ fun RecentCard(modifier: Modifier = Modifier, animation: Animation, onAnimationC
             .fillMaxWidth()
             .clip(RoundedCornerShape(Radius.l))
             .background(MaterialTheme.colors.surface.copy(alpha = TransparentAlpha))
+            .clickable { onAnimationClick(animation.id) }
     ) {
         Card {
             val composition by rememberLottieComposition(LottieCompositionSpec.Url(animation.lottieUrl))
@@ -80,17 +83,5 @@ fun RecentCard(modifier: Modifier = Modifier, animation: Animation, onAnimationC
 @Preview(widthDp = 164)
 @Composable
 private fun CardPreview() = LottieTheme {
-    RecentCard(animation = mockAnimation)
+    RecentCard(animation = MockAnimation)
 }
-
-private val mockAnimation = Animation(
-    id = 0,
-    name = "Name One",
-    bgColor = "#FFBBEE",
-    lottieUrl = "lottieUrl",
-    gifUrl = null,
-    videoUrl = null,
-    imageUrl = "imageUrl",
-    createdAt = Instant.now(),
-    createdBy = Animator(id = 0, name = "name", avatarUrl = "avatarUrl")
-)

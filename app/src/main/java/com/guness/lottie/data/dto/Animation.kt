@@ -60,3 +60,16 @@ data class FeaturedAnimation(
     val animationId: Long = animation.id,
     val featured: Boolean = true
 )
+
+
+val MockAnimation = Animation(
+    id = 0,
+    name = "Name One",
+    bgColor = "#FFBBEE",
+    lottieUrl = "https://assets9.lottiefiles.com/private_files/lf30_s1GCPP.json",
+    gifUrl = null,
+    videoUrl = null,
+    imageUrl = "imageUrl",
+    createdAt = Instant.now(),
+    createdBy = Animator(id = 0, name = "name", avatarUrl = "avatarUrl")
+)

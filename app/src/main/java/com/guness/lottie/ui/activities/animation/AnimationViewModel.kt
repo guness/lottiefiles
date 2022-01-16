@@ -3,10 +3,10 @@ package com.guness.lottie.ui.activities.animation
 import androidx.lifecycle.ViewModel
 import com.guness.lottie.data.dto.Animation
 import com.guness.lottie.data.repo.AnimationRepository
-import com.guness.lottie.data.useCases.FetchPopularUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.joinAll
 import kotlinx.coroutines.supervisorScope
 import javax.inject.Inject
@@ -16,16 +16,19 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class AnimationViewModel @Inject constructor(
-    private val animationRepository: AnimationRepository,
-    private val fetchPopular: FetchPopularUseCase,
+    private val animationRepository: AnimationRepository
 ) : ViewModel() {
 
-    val popular: Flow<List<Animation>>
-        get() = animationRepository.popular
+    private val _animation = MutableStateFlow<Animation?>(null)
+    val animation: Flow<Animation?>
+        get() = _animation
 
-    suspend fun loadData() = supervisorScope {
+    suspend fun loadData(animationId: Long) = supervisorScope {
+        _animation.value = null
         joinAll(
-            async { fetchPopular() }
+            async {
+                _animation.value = animationRepository.animation(animationId)
+            }
         )
     }
 }

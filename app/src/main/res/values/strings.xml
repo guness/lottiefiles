@@ -52,4 +52,7 @@
     <string name="profile_free">Free</string>
     <string name="profile_system">System</string>
 
+    <string name="loading">Loading…</string>
+    <string name="to_be_implemented">This feature is not implemented.</string>
+
 </resources>

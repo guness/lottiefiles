@@ -61,7 +61,8 @@ private fun ScreenContent(
                     animation = it,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(start = Padding.s, end = Padding.s, bottom = Padding.s)
+                        .padding(start = Padding.s, end = Padding.s, bottom = Padding.s),
+                    onAnimationClick = onAnimationClick
                 )
             }
         }

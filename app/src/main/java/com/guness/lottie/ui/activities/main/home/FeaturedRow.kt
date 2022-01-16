@@ -1,6 +1,7 @@
 package com.guness.lottie.ui.activities.main.home
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -19,16 +20,18 @@ import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.guness.lottie.data.dto.Animation
-import com.guness.lottie.data.dto.Animator
+import com.guness.lottie.data.dto.MockAnimation
 import com.guness.lottie.ui.theme.*
+import com.guness.lottie.utils.Callback
 import com.guness.lottie.utils.extensions.toColor
 import com.guness.lottie.utils.widget.Shimmer
-import java.time.Instant
 
 private val WIDTH = 220.dp
 
 @Composable
-fun FeaturedRow(animations: List<Animation>, modifier: Modifier = Modifier) {
+fun FeaturedRow(
+    animations: List<Animation>, modifier: Modifier = Modifier, onAnimationClick: Callback<Long> = { }
+) {
     LazyRow(
         modifier = modifier,
         contentPadding = PaddingValues(horizontal = Padding.s),
@@ -40,7 +43,7 @@ fun FeaturedRow(animations: List<Animation>, modifier: Modifier = Modifier) {
             }
         } else {
             items(animations) {
-                FeaturedView(it)
+                FeaturedView(it, onAnimationClick = onAnimationClick)
             }
         }
     }
@@ -58,12 +61,13 @@ fun FeaturedPlaceholder(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun FeaturedView(animation: Animation, modifier: Modifier = Modifier) {
+fun FeaturedView(animation: Animation, modifier: Modifier = Modifier, onAnimationClick: Callback<Long> = {}) {
     Column(
         modifier = modifier
             .width(WIDTH)
             .clip(RoundedCornerShape(Radius.l))
             .background(MaterialTheme.colors.surface.copy(alpha = TransparentAlpha))
+            .clickable { onAnimationClick(animation.id) }
     ) {
         val composition by rememberLottieComposition(LottieCompositionSpec.Url(animation.lottieUrl))
         LottieAnimation(
@@ -106,23 +110,11 @@ private fun PlaceholderPreview() = LottieTheme {
 @Preview(showBackground = true)
 @Composable
 private fun AnimationPreview() = LottieTheme {
-    FeaturedView(mockAnimation)
+    FeaturedView(MockAnimation)
 }
 
 @Preview(showBackground = true)
 @Composable
 private fun RowPreview() = LottieTheme {
-    FeaturedRow(listOf(mockAnimation, mockAnimation, mockAnimation))
+    FeaturedRow(listOf(MockAnimation, MockAnimation, MockAnimation))
 }
-
-private val mockAnimation = Animation(
-    id = 0,
-    name = "Name One",
-    bgColor = "#FFBBEE",
-    lottieUrl = "lottieUrl",
-    gifUrl = null,
-    videoUrl = null,
-    imageUrl = "imageUrl",
-    createdAt = Instant.now(),
-    createdBy = Animator(id = 0, name = "name", avatarUrl = "avatarUrl")
-)

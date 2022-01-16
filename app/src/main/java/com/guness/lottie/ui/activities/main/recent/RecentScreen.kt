@@ -59,8 +59,9 @@ private fun ScreenContent(
             items(recent, 2) { animation ->
                 RecentCard(
                     animation = animation,
-                    modifier = Modifier.padding(Padding.xs)
-                ) { onAnimationClick(animation.id) }
+                    modifier = Modifier.padding(Padding.xs),
+                    onAnimationClick = onAnimationClick
+                )
             }
         }
     }

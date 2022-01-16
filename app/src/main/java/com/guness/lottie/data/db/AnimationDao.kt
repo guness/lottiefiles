@@ -20,6 +20,9 @@ interface AnimationDao {
     @Insert(entity = DetailedAnimation::class)
     suspend fun update(animation: FeaturedAnimation)
 
+    @Query("SELECT * FROM $TABLE_ANIMATION WHERE animationId = :id LIMIT 1")
+    suspend fun get(id: Long): Animation?
+
     @Query("SELECT * FROM $TABLE_ANIMATION")
     fun observeAll(): Flow<List<Animation>>
 

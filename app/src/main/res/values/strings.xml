@@ -24,6 +24,8 @@
     <string name="profile_photo">Profile photo</string>
     <string name="profile_add_photo">Add profile photo</string>
     <string name="profile_name">Name</string>
+    <string name="profile_login">Login</string>
+    <string name="profile_logout">Logout</string>
     <string name="profile_account_type">Account type</string>
     <string name="profile_daily_remainder">Daily remainder</string>
     <string name="profile_quick_start">Quick start settings</string>
@@ -32,6 +34,8 @@
     <string name="profile_no_mood">You didn\'t track any mood yet.</string>
     <string name="profile_achievements">Achievements</string>
     <string name="profile_no_achievements">You didn\'t unlock any achievements yet.</string>
+    <string name="profile_free">Free</string>
+    <string name="profile_system">System</string>
 
     <string name="start">Start</string>
     <string name="share">Share</string>
@@ -49,10 +53,10 @@
     <string name="cat_health">Health</string>
     <string name="cat_success">Success</string>
     <string name="cat_communication">Communication</string>
-    <string name="profile_free">Free</string>
-    <string name="profile_system">System</string>
 
     <string name="loading">Loading…</string>
     <string name="to_be_implemented">This feature is not implemented.</string>
+    <string name="home_welcome">Welcome!!</string>
+    <string name="home_welcome_x">Welcome, %s</string>
 
 </resources>

@@ -20,6 +20,7 @@ interface AnimationDao {
     @Insert(entity = DetailedAnimation::class)
     suspend fun update(animation: FeaturedAnimation)
 
+    @RewriteQueriesToDropUnusedColumns
     @Query("SELECT * FROM $TABLE_ANIMATION WHERE animationId = :id LIMIT 1")
     suspend fun get(id: Long): Animation?
 

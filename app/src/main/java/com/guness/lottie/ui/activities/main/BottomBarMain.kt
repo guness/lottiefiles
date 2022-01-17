@@ -9,7 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
-import com.guness.lottie.utils.Callback
+import com.guness.lottie.utils.OnClick
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -74,7 +74,7 @@ fun BottomBar(navController: NavController) {
 }
 
 @Composable
-fun BottomBarMain(navController: NavHostController, bottomSheetState: ModalBottomSheetState, onAnimationClick: Callback<Long>) {
+fun BottomBarMain(navController: NavHostController, bottomSheetState: ModalBottomSheetState, onAnimationClick: OnClick<Long>) {
     val scope = rememberCoroutineScope()
 
     BackHandler(bottomSheetState.isVisible) {

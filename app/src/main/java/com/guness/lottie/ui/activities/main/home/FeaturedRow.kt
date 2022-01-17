@@ -22,7 +22,7 @@ import com.airbnb.lottie.compose.rememberLottieComposition
 import com.guness.lottie.data.dto.Animation
 import com.guness.lottie.data.dto.MockAnimation
 import com.guness.lottie.ui.theme.*
-import com.guness.lottie.utils.Callback
+import com.guness.lottie.utils.OnClick
 import com.guness.lottie.utils.extensions.toColor
 import com.guness.lottie.utils.widget.Shimmer
 
@@ -30,7 +30,7 @@ private val WIDTH = 220.dp
 
 @Composable
 fun FeaturedRow(
-    animations: List<Animation>, modifier: Modifier = Modifier, onAnimationClick: Callback<Long> = { }
+    animations: List<Animation>, modifier: Modifier = Modifier, onAnimationClick: OnClick<Long> = { }
 ) {
     LazyRow(
         modifier = modifier,
@@ -61,7 +61,7 @@ fun FeaturedPlaceholder(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun FeaturedView(animation: Animation, modifier: Modifier = Modifier, onAnimationClick: Callback<Long> = {}) {
+fun FeaturedView(animation: Animation, modifier: Modifier = Modifier, onAnimationClick: OnClick<Long> = {}) {
     Column(
         modifier = modifier
             .width(WIDTH)

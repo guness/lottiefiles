@@ -18,12 +18,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.airbnb.lottie.compose.*
 import com.guness.lottie.R
-import com.guness.lottie.utils.Callback
+import com.guness.lottie.utils.OnClick
 import kotlinx.coroutines.launch
 
 @Composable
 fun MiniButton(
-    onClick: Callback<Unit>, modifier: Modifier = Modifier, @DrawableRes id: Int
+    onClick: OnClick<Unit>, modifier: Modifier = Modifier, @DrawableRes id: Int
 ) = IconButton(
     onClick = { onClick(Unit) },
     modifier = modifier
@@ -40,7 +40,7 @@ fun MiniButton(
 }
 
 @Composable
-fun AnimatedMiniButton(onClick: Callback<Unit>, modifier: Modifier = Modifier, @RawRes id: Int) {
+fun AnimatedMiniButton(onClick: OnClick<Unit>, modifier: Modifier = Modifier, @RawRes id: Int) {
     var isPlaying by remember { mutableStateOf(false) }
     var iterations by remember { mutableStateOf(1) }
     val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(id))
@@ -82,7 +82,7 @@ fun AnimatedMiniButton(onClick: Callback<Unit>, modifier: Modifier = Modifier, @
 
 @Composable
 fun BigButton(
-    onClick: Callback<Unit>,
+    onClick: OnClick<Unit>,
     text: String,
     modifier: Modifier = Modifier,
     color: ButtonColor = ButtonColor.Blue,
@@ -133,7 +133,7 @@ fun BigButton(
 
 @Composable
 fun LabelButton(
-    onClick: Callback<Unit>, text: String, modifier: Modifier = Modifier
+    onClick: OnClick<Unit>, text: String, modifier: Modifier = Modifier
 ) = TextButton(
     onClick = { onClick(Unit) },
     modifier = modifier

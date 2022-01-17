@@ -19,13 +19,13 @@ import com.guness.lottie.ui.theme.BottomBarHeight
 import com.guness.lottie.ui.theme.LargeTitle
 import com.guness.lottie.ui.theme.LottieTheme
 import com.guness.lottie.ui.theme.Padding
-import com.guness.lottie.utils.Callback
+import com.guness.lottie.utils.OnClick
 import com.guness.lottie.utils.widget.TopBackground
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emptyFlow
 
 @Composable
-fun PopularScreen(onAnimationClick: Callback<Long>, viewModel: PopularViewModel = hiltViewModel()) {
+fun PopularScreen(onAnimationClick: OnClick<Long>, viewModel: PopularViewModel = hiltViewModel()) {
 
     LaunchedEffect(key1 = "data") {
         viewModel.loadData()
@@ -35,7 +35,7 @@ fun PopularScreen(onAnimationClick: Callback<Long>, viewModel: PopularViewModel 
 
 @Composable
 private fun ScreenContent(
-    onAnimationClick: Callback<Long>,
+    onAnimationClick: OnClick<Long>,
     _popular: Flow<List<Animation>>,
 ) {
 

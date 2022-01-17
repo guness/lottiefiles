@@ -28,7 +28,6 @@ data class Animation(
 )
 
 @Entity(tableName = LottieDatabase.TABLE_ANIMATION)
-@TypeConverters(LottieTypeConverters::class)
 data class DetailedAnimation(
     @Embedded
     val animation: Animation,

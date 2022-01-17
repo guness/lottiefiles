@@ -40,4 +40,14 @@ object LottieTypeConverters {
     fun fromAnimator(value: Animator?): String? {
         return value?.let { json.encodeToString(Animator.serializer(), it) }
     }
+
+    @TypeConverter
+    fun toSet(value: String?): Set<Long>? {
+        return value?.split(",")?.mapNotNull { it.toLongOrNull() }?.toSet()
+    }
+
+    @TypeConverter
+    fun fromSet(value: Set<Long>?): String? {
+        return value?.joinToString(",")
+    }
 }

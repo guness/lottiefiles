@@ -13,7 +13,7 @@ import com.guness.lottie.ui.activities.main.home.practice.PracticeScreen
 import com.guness.lottie.ui.activities.main.popular.PopularScreen
 import com.guness.lottie.ui.activities.main.profile.ProfileScreen
 import com.guness.lottie.ui.activities.main.recent.RecentScreen
-import com.guness.lottie.utils.Callback
+import com.guness.lottie.utils.OnClick
 
 /**
  * Created by guness on 21.11.2021 15:25
@@ -22,7 +22,7 @@ import com.guness.lottie.utils.Callback
 @Composable
 internal fun LottieNavigation(
     navController: NavHostController,
-    onAnimationClick: Callback<Long>,
+    onAnimationClick: OnClick<Long>,
     modifier: Modifier = Modifier,
 ) {
     NavHost(
@@ -37,7 +37,7 @@ internal fun LottieNavigation(
     }
 }
 
-private fun NavGraphBuilder.addTopLevelHome(navController: NavController, onAnimationClick: Callback<Long>) {
+private fun NavGraphBuilder.addTopLevelHome(navController: NavController, onAnimationClick: OnClick<Long>) {
     navigation(
         route = Screen.Home.route,
         startDestination = LeafScreen.Home.createRoute(Screen.Home),
@@ -47,7 +47,7 @@ private fun NavGraphBuilder.addTopLevelHome(navController: NavController, onAnim
     }
 }
 
-private fun NavGraphBuilder.addTopLevelRecent(onAnimationClick: Callback<Long>) {
+private fun NavGraphBuilder.addTopLevelRecent(onAnimationClick: OnClick<Long>) {
     navigation(
         route = Screen.Recent.route,
         startDestination = LeafScreen.Recent.createRoute(Screen.Recent),
@@ -56,7 +56,7 @@ private fun NavGraphBuilder.addTopLevelRecent(onAnimationClick: Callback<Long>) 
     }
 }
 
-private fun NavGraphBuilder.addTopLevelPopular(onAnimationClick: Callback<Long>) {
+private fun NavGraphBuilder.addTopLevelPopular(onAnimationClick: OnClick<Long>) {
     navigation(
         route = Screen.Popular.route,
         startDestination = LeafScreen.Popular.createRoute(Screen.Popular),
@@ -65,19 +65,19 @@ private fun NavGraphBuilder.addTopLevelPopular(onAnimationClick: Callback<Long>)
     }
 }
 
-private fun NavGraphBuilder.addTopLevelProfile(onAnimationClick: Callback<Long>) {
+private fun NavGraphBuilder.addTopLevelProfile(onAnimationClick: OnClick<Long>) {
     navigation(
         route = Screen.Profile.route,
         startDestination = LeafScreen.Profile.createRoute(Screen.Profile),
     ) {
-        addProfile(Screen.Profile, onAnimationClick)
+        addProfile(Screen.Profile)
     }
 }
 
 private fun NavGraphBuilder.addHome(
     navController: NavController,
     root: Screen,
-    onAnimationClick: Callback<Long>
+    onAnimationClick: OnClick<Long>
 ) {
     composable(LeafScreen.Home.createRoute(root)) {
         HomeScreen(onAnimationClick = onAnimationClick)
@@ -86,7 +86,7 @@ private fun NavGraphBuilder.addHome(
 
 private fun NavGraphBuilder.addRecent(
     root: Screen,
-    onAnimationClick: Callback<Long>
+    onAnimationClick: OnClick<Long>
 ) {
     composable(LeafScreen.Recent.createRoute(root)) {
         RecentScreen(onAnimationClick = onAnimationClick)
@@ -95,7 +95,7 @@ private fun NavGraphBuilder.addRecent(
 
 private fun NavGraphBuilder.addPopular(
     root: Screen,
-    onAnimationClick: Callback<Long>
+    onAnimationClick: OnClick<Long>
 ) {
     composable(LeafScreen.Popular.createRoute(root)) {
         PopularScreen(onAnimationClick = onAnimationClick)
@@ -103,11 +103,10 @@ private fun NavGraphBuilder.addPopular(
 }
 
 private fun NavGraphBuilder.addProfile(
-    root: Screen,
-    onAnimationClick: Callback<Long>
+    root: Screen
 ) {
     composable(LeafScreen.Profile.createRoute(root)) {
-        ProfileScreen(onAnimationClick = onAnimationClick)
+        ProfileScreen()
     }
 }
 

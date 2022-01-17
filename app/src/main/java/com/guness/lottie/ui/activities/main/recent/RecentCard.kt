@@ -24,12 +24,10 @@ import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.guness.lottie.data.dto.Animation
-import com.guness.lottie.data.dto.Animator
 import com.guness.lottie.data.dto.MockAnimation
 import com.guness.lottie.ui.theme.*
-import com.guness.lottie.utils.Callback
+import com.guness.lottie.utils.OnClick
 import com.guness.lottie.utils.extensions.toColor
-import java.time.Instant
 
 /**
  * Created by guness on 8.11.2021 11:59
@@ -37,7 +35,7 @@ import java.time.Instant
 private val SIZE = 24.dp
 
 @Composable
-fun RecentCard(modifier: Modifier = Modifier, animation: Animation, onAnimationClick: Callback<Long> = {}) {
+fun RecentCard(modifier: Modifier = Modifier, animation: Animation, onAnimationClick: OnClick<Long> = {}) {
 
     Column(
         modifier = modifier

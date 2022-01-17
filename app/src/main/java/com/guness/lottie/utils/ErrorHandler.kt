@@ -25,17 +25,17 @@ class ErrorHandler(private val context: Context?, private val message: Immediate
     }
 }
 
-fun headlessErrorHandler(message: ImmediateTitle = Title.Resource(R.string.unexpected_error), handler: Callback<Throwable>? = null) =
+fun headlessErrorHandler(message: ImmediateTitle = Title.Resource(R.string.unexpected_error), handler: OnClick<Throwable>? = null) =
     (null as Context?).errorHandler(message, handler)
 
-fun Fragment.errorHandler(message: ImmediateTitle = Title.Resource(R.string.unexpected_error), handler: Callback<Throwable>? = null) =
+fun Fragment.errorHandler(message: ImmediateTitle = Title.Resource(R.string.unexpected_error), handler: OnClick<Throwable>? = null) =
     context.errorHandler(message, handler)
 
 @Composable
-fun errorHandler(message: ImmediateTitle = Title.Resource(R.string.unexpected_error), handler: Callback<Throwable>? = null) =
+fun errorHandler(message: ImmediateTitle = Title.Resource(R.string.unexpected_error), handler: OnClick<Throwable>? = null) =
     LocalContext.current.errorHandler(message, handler)
 
-fun Context?.errorHandler(message: ImmediateTitle = Title.Resource(R.string.unexpected_error), handler: Callback<Throwable>? = null) =
+fun Context?.errorHandler(message: ImmediateTitle = Title.Resource(R.string.unexpected_error), handler: OnClick<Throwable>? = null) =
     CoroutineExceptionHandler { _, exception ->
         if (handler == null) {
             ErrorHandler(this, message).handleError(exception)

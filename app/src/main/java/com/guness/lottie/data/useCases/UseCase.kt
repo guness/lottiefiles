@@ -6,3 +6,7 @@ package com.guness.lottie.data.useCases
 abstract class UseCase<T> {
     abstract suspend operator fun invoke()
 }
+
+abstract class InputUseCase<T> {
+    abstract suspend operator fun invoke(value: T)
+}

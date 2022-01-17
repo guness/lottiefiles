@@ -2,6 +2,7 @@ package com.guness.lottie.ui.activities.main.home
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
@@ -16,6 +17,7 @@ import com.guness.lottie.data.dto.Blog
 import com.guness.lottie.ui.theme.Footnote1
 import com.guness.lottie.ui.theme.LottieTheme
 import com.guness.lottie.ui.theme.Padding
+import com.guness.lottie.utils.OnClick
 import java.time.Instant
 
 /**
@@ -26,10 +28,10 @@ private val WIDTH = 180.dp
 private val HEIGHT = 156.dp
 
 @Composable
-fun BlogCard(blog: Blog, modifier: Modifier = Modifier) {
+fun BlogCard(blog: Blog, modifier: Modifier = Modifier, onBlogClick: OnClick<Blog> = { }) {
 
     Card(modifier = modifier) {
-        Row(verticalAlignment = Alignment.CenterVertically) {
+        Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.clickable { onBlogClick(blog) }) {
             Box(
                 modifier = Modifier
                     .background(MaterialTheme.colors.onBackground)

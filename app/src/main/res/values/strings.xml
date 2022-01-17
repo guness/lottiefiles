@@ -44,16 +44,6 @@
 
     <string name="unexpected_error">Unexpected Error!</string>
 
-    <string name="cat_general">General</string>
-    <string name="cat_acceptance">Self acceptance</string>
-    <string name="cat_wealth">Wealth</string>
-    <string name="cat_love">Love</string>
-    <string name="cat_stress">Stress and anxiety</string>
-    <string name="cat_motivation">Motivation</string>
-    <string name="cat_health">Health</string>
-    <string name="cat_success">Success</string>
-    <string name="cat_communication">Communication</string>
-
     <string name="loading">Loading…</string>
     <string name="to_be_implemented">This feature is not implemented.</string>
     <string name="home_welcome">Welcome!!</string>

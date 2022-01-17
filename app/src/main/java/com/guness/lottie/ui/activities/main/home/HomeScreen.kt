@@ -10,6 +10,8 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -20,6 +22,7 @@ import com.guness.lottie.data.dto.Blog
 import com.guness.lottie.data.dto.User
 import com.guness.lottie.ui.theme.*
 import com.guness.lottie.utils.OnClick
+import com.guness.lottie.utils.extensions.openUriSafe
 import com.guness.lottie.utils.widget.TopBackground
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emptyFlow
@@ -110,12 +113,17 @@ private fun ScreenContent(
                         .padding(start = Padding.s, top = Padding.m, end = Padding.xxl)
                 )
             }
-            items(blogs) {
+
+            items(blogs) { blog->
+                val context = LocalContext.current
+                val uriHandler = LocalUriHandler.current
                 BlogCard(
-                    blog = it,
+                    blog = blog,
                     modifier = Modifier
                         .padding(start = Padding.s, top = Padding.s, end = Padding.s)
-                )
+                ) {
+                    uriHandler.openUriSafe(blog.imageUrl, context)
+                }
             }
         }
     }

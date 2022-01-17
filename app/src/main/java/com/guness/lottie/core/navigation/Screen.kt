@@ -17,6 +17,4 @@ sealed class LeafScreen(private val route: String) {
     object Popular : LeafScreen(route = Screen.Popular.route)
     object Recent : LeafScreen(route = Screen.Recent.route)
     object Profile : LeafScreen(route = Screen.Profile.route)
-
-    object Practice : LeafScreen(route = "practice")
 }

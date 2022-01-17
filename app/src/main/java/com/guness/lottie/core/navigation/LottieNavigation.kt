@@ -2,14 +2,12 @@ package com.guness.lottie.core.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import com.guness.lottie.ui.activities.main.home.HomeScreen
-import com.guness.lottie.ui.activities.main.home.practice.PracticeScreen
 import com.guness.lottie.ui.activities.main.popular.PopularScreen
 import com.guness.lottie.ui.activities.main.profile.ProfileScreen
 import com.guness.lottie.ui.activities.main.recent.RecentScreen
@@ -30,20 +28,19 @@ internal fun LottieNavigation(
         startDestination = Screen.Home.route,
         modifier = modifier,
     ) {
-        addTopLevelHome(navController, onAnimationClick)
+        addTopLevelHome(onAnimationClick)
         addTopLevelPopular(onAnimationClick)
         addTopLevelRecent(onAnimationClick)
-        addTopLevelProfile(onAnimationClick)
+        addTopLevelProfile()
     }
 }
 
-private fun NavGraphBuilder.addTopLevelHome(navController: NavController, onAnimationClick: OnClick<Long>) {
+private fun NavGraphBuilder.addTopLevelHome(onAnimationClick: OnClick<Long>) {
     navigation(
         route = Screen.Home.route,
         startDestination = LeafScreen.Home.createRoute(Screen.Home),
     ) {
-        addHome(navController, Screen.Home, onAnimationClick)
-        addPractice(Screen.Home)
+        addHome(Screen.Home, onAnimationClick)
     }
 }
 
@@ -65,7 +62,7 @@ private fun NavGraphBuilder.addTopLevelPopular(onAnimationClick: OnClick<Long>) 
     }
 }
 
-private fun NavGraphBuilder.addTopLevelProfile(onAnimationClick: OnClick<Long>) {
+private fun NavGraphBuilder.addTopLevelProfile() {
     navigation(
         route = Screen.Profile.route,
         startDestination = LeafScreen.Profile.createRoute(Screen.Profile),
@@ -75,7 +72,6 @@ private fun NavGraphBuilder.addTopLevelProfile(onAnimationClick: OnClick<Long>) 
 }
 
 private fun NavGraphBuilder.addHome(
-    navController: NavController,
     root: Screen,
     onAnimationClick: OnClick<Long>
 ) {
@@ -107,13 +103,5 @@ private fun NavGraphBuilder.addProfile(
 ) {
     composable(LeafScreen.Profile.createRoute(root)) {
         ProfileScreen()
-    }
-}
-
-private fun NavGraphBuilder.addPractice(
-    root: Screen,
-) {
-    composable(LeafScreen.Practice.createRoute(root)) {
-        PracticeScreen()
     }
 }

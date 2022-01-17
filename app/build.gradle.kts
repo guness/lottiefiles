@@ -70,6 +70,9 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+    testOptions {
+        unitTests.isIncludeAndroidResources = true
+    }
 }
 
 tasks.withType<KotlinCompile>().configureEach {
@@ -131,7 +134,6 @@ dependencies {
     implementation(JakeWharton.timber)
 
     // Internet
-    implementation("org.jsoup:jsoup:_")
     implementation(COIL.compose)
     implementation(Square.retrofit2)
     implementation(Square.okHttp3.okHttp)
@@ -144,9 +146,13 @@ dependencies {
 
     // Testing
     testImplementation(Testing.junit4)
-    androidTestImplementation(AndroidX.test.ext.junit)
-    androidTestImplementation(AndroidX.test.espresso.core)
-    androidTestImplementation(AndroidX.compose.ui.testJunit4)
+    testImplementation(Testing.robolectric)
+    testImplementation(Square.okHttp3.mockWebServer)
+    testImplementation(AndroidX.test.core)
+    testImplementation(AndroidX.test.ext.junit)
+    testImplementation(AndroidX.test.monitor)
+    testImplementation(AndroidX.test.espresso.core)
+    testImplementation(AndroidX.compose.ui.testJunit4)
 }
 
 kapt {

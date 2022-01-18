@@ -44,7 +44,7 @@ fun BottomBar(navController: NavController) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentRoute = navBackStackEntry?.destination?.route
         items.forEach {
-            val selected = currentRoute == it.screen.route
+            val selected = currentRoute?.endsWith(it.screen.route) == true
             val title = stringResource(it.title)
             BottomNavigationItem(
                 icon = {

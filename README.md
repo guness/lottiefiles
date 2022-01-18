@@ -1,6 +1,6 @@
 # LottieFiles
+
 LottieFiles is a marketplace application where you can find animations.
-=================
 
 Some Key Features
 ---------------
@@ -19,16 +19,16 @@ Missing Pieces
 - QR Code scan is not implemented as it will not provide a better understanding of code quality now.
 - Error Handling is not implemented for Webservice. App will not crash but API will fail silently.
 - Progress during API calls is not implemented.
-- No authentication is required in order to login.
+- No credentials is required in order to login.
 - CI/CD pipeline, Crashlytics, and other essential part of production system is missing.
 
 Getting Started
 ---------------
 This project uses the Gradle build system. To build this project, use the
-`gradlew build` command or use "Import Project" in Android Studio.
+`./gradlew build` command or use "Import Project" in Android Studio.
 
-There are two Gradle tasks for testing the project:
-`test` - for running unit tests
+There are one Gradle tasks for testing the project:
+`./gradlew test` - for running unit tests
 
 For more resources on learning Android development, visit the
 [Developer Guides](https://developer.android.com/guide/) at
@@ -36,21 +36,13 @@ For more resources on learning Android development, visit the
 
 Screenshots
 -----------
+<img src="screenshots/lhome1.png" width="240"><img src="screenshots/lhome2.png" width="240"><img src="screenshots/lpopular.png" width="240">\
+<img src="screenshots/lrecent.png" width="240"><img src="screenshots/lprofile.png" width="240"><img src="screenshots/lanimation.png" width="240">
 
-![Home](screenshots/lhome1.png "Upper part of home screen")
-![Home Scrolled](screenshots/lhome2.png "Lower part of home screen")
-![Popular](screenshots/lpopular.png "Popular animations")
-![Recent](screenshots/lrecent.png "Recent animations")
-![Profile](screenshots/lprofile.png "Profile screen")
-![Animation](screenshots/lanimation.png "Animation detail screen")
-\
+
 ### Dark Theme
-![Home](screenshots/dhome1.png "Upper part of home screen")
-![Home Scrolled](screenshots/dhome2.png "Lower part of home screen")
-![Popular](screenshots/dpopular.png "Popular animations")
-![Recent](screenshots/drecent.png "Recent animations")
-![Profile](screenshots/dprofile.png "Profile screen")
-![Animation](screenshots/danimation.png "Animation detail screen")
+<img src="screenshots/dhome1.png" width="240"><img src="screenshots/dhome2.png" width="240"><img src="screenshots/dpopular.png" width="240">\
+<img src="screenshots/drecent.png" width="240"><img src="screenshots/dprofile.png" width="240"><img src="screenshots/danimation.png" width="240">
 
 Libraries Used
 --------------
@@ -69,7 +61,7 @@ Libraries Used
     * [Room][16] - Access your app's SQLite database with in-app objects and compile-time checks.
     * [ViewModel][17] - Store UI-related data that isn't destroyed on app rotations. Easily schedule
       asynchronous tasks for optimal execution.
-* [IO] - Data transfer and serialization components
+* Data transfer and serialization components
     * [OkHttp3][31] - HTTP consumption library.
     * [Retrofit][32] - Typesafe API/Webservice definition library.
     * [KotlinX Serialization][33] - Json Serialization/Deserialization library.

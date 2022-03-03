@@ -29,7 +29,7 @@ fun MiniButton(
     modifier = modifier
         .padding(Padding.s)
         .size(Padding.l)
-        .background(MaterialTheme.colors.primary, shape = RoundedCornerShape(Radius.s))
+        .background(MaterialTheme.colors.primary, shape = Shapes.small)
 ) {
     Icon(
         modifier = Modifier.size(Padding.m),
@@ -64,7 +64,7 @@ fun AnimatedMiniButton(onClick: OnClick<Unit>, modifier: Modifier = Modifier, @R
         },
         modifier = modifier
             .size(Padding.l)
-            .background(MaterialTheme.colors.primary, shape = RoundedCornerShape(Radius.s))
+            .background(MaterialTheme.colors.primary, shape = Shapes.small)
     ) {
 
 

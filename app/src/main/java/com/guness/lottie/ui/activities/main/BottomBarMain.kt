@@ -26,8 +26,8 @@ import kotlinx.coroutines.launch
 
 private val items = listOf(
     BottomBarItem(Screen.Home, R.string.nav_home, R.drawable.ic_home, R.drawable.ic_home_filled),
-    BottomBarItem(Screen.Popular, R.string.nav_popular, R.drawable.ic_heart, R.drawable.ic_heart_filled),
-    BottomBarItem(Screen.Recent, R.string.nav_recent, R.drawable.ic_category, R.drawable.ic_category_filled),
+    BottomBarItem(Screen.Popular, R.string.nav_popular, R.drawable.ic_popular, R.drawable.ic_popular_filled),
+    BottomBarItem(Screen.Recent, R.string.nav_recent, R.drawable.ic_recent, R.drawable.ic_recent_filled),
     BottomBarItem(Screen.Profile, R.string.nav_profile, R.drawable.ic_profile, R.drawable.ic_profile_filled)
 )
 
@@ -35,7 +35,7 @@ private data class BottomBarItem(val screen: Screen, @StringRes val title: Int, 
 
 @Composable
 fun BottomBar(navController: NavController) {
-    val shape = RoundedCornerShape(topStart = Radius.l, topEnd = Radius.l)
+    val shape = RoundedCornerShape(topStart = Radius.l)
     BottomNavigation(
         modifier = Modifier.clip(shape),
         elevation = 5.dp,

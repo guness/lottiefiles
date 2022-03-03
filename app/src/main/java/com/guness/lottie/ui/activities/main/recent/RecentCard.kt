@@ -40,7 +40,7 @@ fun RecentCard(modifier: Modifier = Modifier, animation: Animation, onAnimationC
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .clip(RoundedCornerShape(Radius.l))
+            .clip(Shapes.medium)
             .background(MaterialTheme.colors.surface.copy(alpha = TransparentAlpha))
             .clickable { onAnimationClick(animation.id) }
     ) {

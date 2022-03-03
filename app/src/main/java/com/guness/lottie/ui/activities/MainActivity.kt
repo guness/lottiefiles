@@ -48,7 +48,7 @@ fun MainView() {
         sheetContent = {
             AnimationScreen(animationId)
         },
-        sheetShape = RoundedCornerShape(topStart = Radius.l, topEnd = Radius.l)
+        sheetShape = RoundedCornerShape(topStart = Radius.l)
     ) {
         Scaffold(
             bottomBar = {

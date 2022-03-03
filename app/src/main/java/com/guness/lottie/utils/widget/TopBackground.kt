@@ -13,7 +13,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.guness.lottie.ui.theme.Radius
 import com.guness.lottie.ui.theme.lottieGradient
 
-private val shape = RoundedCornerShape(bottomStart = Radius.l, bottomEnd = Radius.l)
+private val shape = RoundedCornerShape(bottomStart = Radius.l)
 
 @Composable
 fun TopBackground() = Box(
@@ -21,12 +21,12 @@ fun TopBackground() = Box(
         .clip(shape)
         .background(
             brush = lottieGradient(
-                rotation = -70,
-                offset = Offset(1.3f, 1.09f)
+                rotation = 40,
+                offset = Offset(-1.5f, 1.79f)
             )
         )
         .fillMaxWidth()
-        .fillMaxHeight(0.44f)
+        .fillMaxHeight(0.34f)
 )
 
 @Preview(widthDp = 300, heightDp = 600)

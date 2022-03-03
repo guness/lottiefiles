@@ -65,7 +65,7 @@ fun FeaturedView(animation: Animation, modifier: Modifier = Modifier, onAnimatio
     Column(
         modifier = modifier
             .width(WIDTH)
-            .clip(RoundedCornerShape(Radius.l))
+            .clip(Shapes.medium)
             .background(MaterialTheme.colors.surface.copy(alpha = TransparentAlpha))
             .clickable { onAnimationClick(animation.id) }
     ) {
@@ -76,7 +76,7 @@ fun FeaturedView(animation: Animation, modifier: Modifier = Modifier, onAnimatio
                 .fillMaxWidth()
                 .aspectRatio(GoldenRatio)
                 .background(animation.bgColor.toColor())
-                .clip(RoundedCornerShape(Radius.l)),
+                .clip(Shapes.medium),
 
             iterations = LottieConstants.IterateForever,
             contentScale = ContentScale.Fit
